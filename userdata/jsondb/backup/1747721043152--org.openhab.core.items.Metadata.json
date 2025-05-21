@@ -1,0 +1,16 @@
+{
+  "unit:ManuellerTestName": {
+    "class": "org.openhab.core.items.Metadata",
+    "value": {
+      "key": {
+        "segments": [
+          "unit",
+          "ManuellerTestName"
+        ],
+        "uid": "unit:ManuellerTestName"
+      },
+      "value": "W",
+      "configuration": {}
+    }
+  }
+}

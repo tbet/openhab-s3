@@ -1,0 +1,10 @@
+rule "Wh to kWh Conversion"
+when
+    Item Shelly_DG_Energy changed or
+    Item Shelly_Allg_Energy changed or
+    Item Shelly_1OG_Energy changed
+then
+    DG_TotalEnergy_kWh.postUpdate((Shelly_DG_Energy.state as Number) / 1000)
+    Allg_TotalEnergy_kWh.postUpdate((Shelly_Allg_Energy.state as Number) / 1000)
+    Stock1_TotalEnergy_kWh.postUpdate((Shelly_1OG_Energy.state as Number) / 1000)
+end

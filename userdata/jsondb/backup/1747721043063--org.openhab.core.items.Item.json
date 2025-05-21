@@ -1,0 +1,12 @@
+{
+  "ManuellerTestName": {
+    "class": "org.openhab.core.items.ManagedItemProvider$PersistedItem",
+    "value": {
+      "groupNames": [],
+      "itemType": "Number:Power",
+      "tags": [],
+      "label": "ManuellerTestLabel",
+      "category": ""
+    }
+  }
+}

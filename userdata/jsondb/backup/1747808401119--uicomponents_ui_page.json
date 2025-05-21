@@ -1,0 +1,240 @@
+{
+  "overview": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "overview",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "May 21, 2025, 8:20:00 AM",
+      "component": "oh-layout-page",
+      "config": {
+        "icon": "energy",
+        "label": "Stromverbrauch"
+      },
+      "slots": {
+        "canvas": [],
+        "default": [
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "action": "analyzer",
+                                "actionAnalyzerChartType": "year",
+                                "actionAnalyzerCoordSystem": "calendar",
+                                "icon": "oh:attic",
+                                "item": "DG_TotalEnergy_kWh",
+                                "title": "Dachgeschoss Verbrauch",
+                                "trendItem": "DG_TotalEnergy_kWh"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "action": "analyzer",
+                                "actionAnalyzerChartType": "year",
+                                "actionAnalyzerCoordSystem": "calendar",
+                                "icon": "oh:attic",
+                                "item": "Shelly_DG_Power",
+                                "title": "Dachgeschoss Leistung",
+                                "trendItem": "Shelly_DG_Power"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "action": "analyzer",
+                                "actionAnalyzerChartType": "year",
+                                "actionAnalyzerCoordSystem": "calendar",
+                                "icon": "oh:firstfloor",
+                                "item": "Stock1_TotalEnergy_kWh",
+                                "title": "1. Stock Verbrauch",
+                                "trendItem": "Stock1_TotalEnergy_kWh"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "action": "analyzer",
+                                "actionAnalyzerChartType": "year",
+                                "actionAnalyzerCoordSystem": "calendar",
+                                "icon": "oh:firstfloor",
+                                "item": "Shelly_1OG_Power",
+                                "title": "1. Stock Leistung",
+                                "trendItem": "Shelly_1OG_Power"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "icon": "oh:groundfloor",
+                                "title": "Erdgeschoss Verbrauch"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "icon": "oh:groundfloor",
+                                "title": "Erdgeschoss Leistung"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "action": "analyzer",
+                                "actionAnalyzerChartType": "year",
+                                "actionAnalyzerCoordSystem": "calendar",
+                                "icon": "oh:group",
+                                "item": "Allg_TotalEnergy_kWh",
+                                "title": "Allgemein Verbrauch",
+                                "trendItem": "Allg_TotalEnergy_kWh"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "action": "analyzer",
+                                "actionAnalyzerChartType": "year",
+                                "actionAnalyzerCoordSystem": "calendar",
+                                "icon": "oh:group",
+                                "item": "Shelly_Allg_Power",
+                                "title": "Allgemein Leistung",
+                                "trendItem": "Shelly_Allg_Power"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "grid": [],
+        "masonry": []
+      }
+    }
+  }
+}

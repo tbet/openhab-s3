@@ -1,0 +1,33 @@
+{
+  "mqtt:broker:c1697b8ccf": {
+    "class": "org.openhab.core.thing.internal.ThingStorageEntity",
+    "value": {
+      "isBridge": true,
+      "channels": [],
+      "label": "MQTT Broker",
+      "configuration": {
+        "birthRetain": true,
+        "certificatepin": true,
+        "clientid": "43eec4a3-f402-42b7-a5c2-c592d24c7c7c",
+        "enableDiscovery": true,
+        "host": "localhost",
+        "hostnameValidated": true,
+        "keepAlive": 60,
+        "lwtQos": 0,
+        "lwtRetain": true,
+        "mqttVersion": "V3",
+        "port": 1883,
+        "protocol": "TCP",
+        "publickeypin": true,
+        "qos": 0,
+        "reconnectTime": 60000,
+        "secure": false,
+        "shutdownRetain": true
+      },
+      "properties": {},
+      "UID": "mqtt:broker:c1697b8ccf",
+      "thingTypeUID": "mqtt:broker",
+      "location": "Pi im Zaehlerschrank"
+    }
+  }
+}

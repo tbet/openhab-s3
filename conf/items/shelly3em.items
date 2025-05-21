@@ -1,0 +1,11 @@
+// Dachgeschoss
+Number Shelly_DG_Power "Dachgeschoss Leistung [%.1f W]" <attic> { channel="mqtt:topic:shelly_dg:power_total" }
+Number Shelly_DG_Energy "Dachgeschoss Verbrauch [%.3f kWh]" <attic> { channel="mqtt:topic:shelly_dg:energy_total" }
+
+// Allgemein
+Number Shelly_Allg_Power "Allgemein Leistung [%.1f W]" <group> { channel="mqtt:topic:shelly_allg:power_total" }
+Number Shelly_Allg_Energy "Allgemein Verbrauch [%.3f kWh]" <group> { channel="mqtt:topic:shelly_allg:energy_total" }
+
+// 1. OG
+Number Shelly_1OG_Power "1. Stock Leistung [%.1f W]" <firstfloor> { channel="mqtt:topic:shelly_1og:power_total" }
+Number Shelly_1OG_Energy "1. Stock Verbrauch [%.3f kWh]" <firstfloor> { channel="mqtt:topic:shelly_1og:energy_total" }

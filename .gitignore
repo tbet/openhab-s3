@@ -1,0 +1,46 @@
+# Ignoriere alles im userdata-Ordner ...
+userdata/*
+
+# ... aber behalte diese systemrelevanten Dateien
+!userdata/etc/
+!userdata/jsondb/
+!userdata/uuid
+!userdata/secret
+!userdata/tmp/
+!userdata/zigbee/
+
+# Ignoriere cache, tmp, logs
+userdata/cache/
+userdata/tmp/
+userdata/logs/
+
+# Ignore event logs and backups
+userdata/backup/
+userdata/logs/
+userdata/persistence/
+
+# Konfigurations-Caches, die beim Start neu erzeugt werden
+userdata/kar/
+userdata/solr/
+
+# IDE-Artefakte
+.vscode/
+.idea/
+*.swp
+*.bak
+*~
+
+# OpenHAB Backup-Dateien
+openhab-backup-*.zip
+
+# Konfig-Backups
+conf/*.bak
+conf/*.old
+conf/*~
+
+# Java generiertes Zeug (z. B. aus Addons)
+addons/*.class
+addons/*.jar
+addons/lib/
+addons/tmp/
+

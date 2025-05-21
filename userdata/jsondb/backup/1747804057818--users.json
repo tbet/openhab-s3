@@ -1,0 +1,26 @@
+{
+  "pi": {
+    "class": "org.openhab.core.auth.ManagedUser",
+    "value": {
+      "name": "pi",
+      "passwordHash": "topr0a2zIe4MMvtxfTrtm3d4HE3v+MAI70rdZUfXDWMv//5xxTzAjpUj3NWNi6sqKTqA3ZUYgex5rqwbadIUOw\u003d\u003d",
+      "passwordSalt": "fw8M2qRR/3/tz3/yBvlBox0oF2OuCayBQPEQs8nXB0+XttYD24jXCal98uyRJdvlNY535fj/r/bqKHJez7iW5w\u003d\u003d",
+      "roles": [
+        "administrator"
+      ],
+      "sessions": [
+        {
+          "sessionId": "dd8d9078-98a8-4f4b-805e-0a58e665c1a0",
+          "refreshToken": "a04427d3854b4fa088f8f12116613a9f",
+          "createdTime": "May 19, 2025, 8:24:14 PM",
+          "lastRefreshTime": "May 21, 2025, 7:07:37 AM",
+          "clientId": "http://zaehlerschrank-s3:8080",
+          "redirectUri": "http://zaehlerschrank-s3:8080",
+          "scope": "admin",
+          "sessionCookie": true
+        }
+      ],
+      "apiTokens": []
+    }
+  }
+}
