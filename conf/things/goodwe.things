@@ -1,0 +1,23 @@
+Bridge modbus:tcp:goodwe [ 
+    host="192.168.179.22", 
+    port=502, 
+    id=1, 
+    timeBetweenTransactionsMillis=60, 
+    connectMaxTries=3 
+] {
+    Bridge poller 35100_35220 [ 
+        start=35100, 
+        length=120, 
+        refresh=5000, 
+        type="holding",
+        maxTries=3,
+        cacheMillis=50
+    ] {
+        Thing data house_power [ 
+            readStart=35138, 
+            readValueType="int16", 
+            updateUnchangedValuesEveryMillis=1000
+        ]
+    }
+}
+

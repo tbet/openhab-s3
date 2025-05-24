@@ -1,0 +1,2 @@
+Number GoodWe_HousePower "PV&Speicher Haus Leistung [%.1f W]" <group> { channel="modbus:data:goodwe:35100_35220:house_power:number" }
+

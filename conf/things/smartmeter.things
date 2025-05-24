@@ -1,0 +1,5 @@
+smartmeter:meter:BinderPower     [port="/dev/ttyUSB0", refresh=5] {
+    Channels:
+        Type 1-0_1-8-0 : 1-0_1-8-0
+        Type 1-0_2-8-0 : 1-0_2-8-0
+}

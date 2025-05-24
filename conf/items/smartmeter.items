@@ -1,0 +1,2 @@
+Number:Energy SmartmeterVerbrauch "Smartmeter Verbrauch [%.2f kWh]"  <group>            { channel="smartmeter:meter:BinderPower:1-0_1-8-0" }
+Number:Energy SmartmeterEinspeisung "Smartmeter Einspeisung [%.2f kWh]"  <group>        { channel="smartmeter:meter:BinderPower:1-0_2-8-0" }
