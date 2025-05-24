@@ -8,7 +8,7 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "May 21, 2025, 8:21:21 AM",
+      "timestamp": "May 24, 2025, 9:06:01 AM",
       "component": "oh-layout-page",
       "config": {
         "icon": "energy",
@@ -223,6 +223,138 @@
                               }
                             }
                           ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "action": "analyzer",
+                                "actionAnalyzerChartType": "year",
+                                "actionAnalyzerCoordSystem": "calendar",
+                                "actionAnalyzerItems": [
+                                  "SmartmeterVerbrauch"
+                                ],
+                                "icon": "oh:group",
+                                "item": "SmartmeterVerbrauch",
+                                "title": "Hauptstromzähler Verbrauch",
+                                "trendItem": "SmartmeterVerbrauch"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "action": "analyzer",
+                                "actionAnalyzerChartType": "day",
+                                "actionAnalyzerCoordSystem": "time",
+                                "icon": "oh:group",
+                                "item": "SmartmeterEinspeisung",
+                                "title": "Hauptstromzähler Einspeisung",
+                                "trendItem": "SmartmeterEinspeisung"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "action": "analyzer",
+                                "actionAnalyzerChartType": "day",
+                                "actionAnalyzerCoordSystem": "time",
+                                "icon": "oh:group",
+                                "item": "GoodWe_HousePower",
+                                "title": "PV\u0026Speicher Haus Leistung",
+                                "trendItem": "GoodWe_HousePower"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "icon": "oh:group",
+                                "title": "Haus Netzbezug Leistung"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "icon": "oh:group",
+                                "title": "Speicher Ladung in %"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": []
                         }
                       }
                     ]
