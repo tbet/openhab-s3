@@ -2,6 +2,7 @@
 userdata/*
 
 # ... aber behalte diese systemrelevanten Dateien
+!conf/*
 !userdata/etc/
 !userdata/jsondb/
 !userdata/uuid
@@ -14,7 +15,9 @@ userdata/cache/
 userdata/tmp/
 userdata/logs/
 
-# Ignore event logs and backups
+# Ignore event logs users and backups
+userdata/jsondb/users.json
+userdata/jsondb/backup/
 userdata/backup/
 userdata/logs/
 userdata/persistence/
