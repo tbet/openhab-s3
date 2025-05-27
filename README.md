@@ -1,4 +1,6 @@
-# Openhab als Docker Container
+In diesem Projekt wird der Hauptstromzähler via Optokopf (USB), die Nebenstromzähler via Shelly Pro 3EM (LAN) und der Goodwe Wechselrichter GW10K-ET via ModBus (LAN) von einem Raspberrp Pi Rechner (Linux) mit Openhab im Docker Container ausgelesen.
+
+# Openhab als Docker Container auf dem Raspi
 https://github.com/openhab/openhab-docker
 <pre> ```docker-compose.yml
 version: "3.3"
@@ -21,7 +23,7 @@ services:
 ``` </pre>
 docker-compose up -d
 
-# Installation, Start und Check von Mosquitto (MQTT <> Shelly Geräte)
+# Installation, Start und Check von Mosquitto (MQTT <> Shelly Geräte) auf dem Raspi
 <pre> ```bash
 sudo apt install -y mosquitto mosquitto-clients
 sudo systemctl enable mosquitto
@@ -30,4 +32,10 @@ sudo systemctl status mosquitto
 journalctl -u mosquitto -n 50 --no-pagercd 
 netstat -tuln | grep 1883
 mosquitto_sub -t "#" -v
+``` </pre>
+
+# Check der Modbus Verbindung zum Goodwe Wechselrichter vom Raspi aus
+<pre> ```bash
+telnet 192.168.XXX.XXX 502
+mbpoll -a 247 -t 4:int -r 35105 -c 1 -0 -1 192.168.179.22
 ``` </pre>
