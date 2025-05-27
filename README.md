@@ -35,7 +35,7 @@ mosquitto_sub -t "#" -v
 ``` </pre>
 
 # Check der Modbus Verbindung zum Goodwe Wechselrichter vom Raspi aus
-Ip-Adresses des Goodwe Wechselrichters
+Ip-Adresses des Goodwe Wechselrichters verwenden
 <pre> ```bash
 telnet 192.168.XXX.XXX 502
 mbpoll -a 247 -t 4:int -r 35105 -c 1 -0 -1 192.168.XXX.XXX
