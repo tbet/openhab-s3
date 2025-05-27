@@ -1,2 +1,10 @@
-Number GoodWe_HousePower "PV&Speicher Haus Leistung [%.1f W]" <group> { channel="modbus:data:goodwe:35100_35220:house_power:number" }
+Number:Power GoodWe_HousePower "PV&Speicher Leistung [%.1f W]" <group> { channel="modbus:data:goodwe:35100_35220:system_power:number" }
+Number:Power GoodWe_TotalLoadPower "Total Load Power [%.1f W]" <group> { channel="modbus:data:goodwe:35100_35220:total_load_power:number" }
+
+Number:Power GoodWe_PV1_Power "PV1 Power [%.1f W]" <group> { channel="modbus:data:goodwe:35100_35220:pv1_power:number" }
+Number:Power GoodWe_PV2_Power "PV2 Power [%.1f W]" <group> { channel="modbus:data:goodwe:35100_35220:pv2_power:number" }
+
+Number:Power MTTotalActivepower "Meter Total Active Power [%.1f W]" <group> { channel="modbus:data:goodwe:36000_36044:mt_total_active_power:number" }
+
+Number:Dimensionless GoodWe_Battery_Percent "Speicher in Prozent [%.0f %%]" <battery> { channel="modbus:data:goodwe:37000_37149:battery_percent:number" }
 

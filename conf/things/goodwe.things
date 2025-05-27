@@ -7,17 +7,60 @@ Bridge modbus:tcp:goodwe [
 ] {
     Bridge poller 35100_35220 [ 
         start=35100, 
-        length=120, 
+        length=80, 
         refresh=5000, 
         type="holding",
         maxTries=3,
         cacheMillis=50
     ] {
-        Thing data house_power [ 
+        Thing data pv1_power [
+            readStart=35105,
+            readValueType="int32",
+            updateUnchangedValuesEveryMillis=1000
+        ]
+        Thing data pv2_power [
+            readStart=35109,
+            readValueType="int32",
+            updateUnchangedValuesEveryMillis=1000
+        ]
+        Thing data system_power [ 
             readStart=35138, 
             readValueType="int16", 
             updateUnchangedValuesEveryMillis=1000
         ]
+        Thing data total_load_power [
+            readStart=35172,
+            readValueType="int16",
+            updateUnchangedValuesEveryMillis=1000
+        ]
+    }
+    Bridge poller 36000_36044 [
+        start=36000,
+        length=10,
+        refresh=5000,
+        type="holding",
+        maxTries=3,
+        cacheMillis=50
+    ] {
+      Thing data mt_total_active_power [
+          readStart=36008,
+          readValueType="int16",
+          updateUnchangedValuesEveryMillis=1000
+      ]
+    }
+    Bridge poller 37000_37149 [
+        start=37000,
+        length=10,
+        refresh=5000,
+        type="holding",
+        maxTries=3,
+        cacheMillis=50
+    ] {
+      Thing data battery_percent [
+          readStart=37007,
+          readValueType="uint16",
+          updateUnchangedValuesEveryMillis=1000
+      ]
     }
 }
 

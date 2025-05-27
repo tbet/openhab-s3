@@ -8,7 +8,7 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "May 24, 2025, 9:06:01 AM",
+      "timestamp": "May 27, 2025, 9:39:42 AM",
       "component": "oh-layout-page",
       "config": {
         "icon": "energy",
@@ -38,6 +38,9 @@
                                 "action": "analyzer",
                                 "actionAnalyzerChartType": "year",
                                 "actionAnalyzerCoordSystem": "calendar",
+                                "actionAnalyzerItems": [
+                                  "DG_TotalEnergy_kWh"
+                                ],
                                 "icon": "oh:attic",
                                 "item": "DG_TotalEnergy_kWh",
                                 "title": "Dachgeschoss Verbrauch",
@@ -58,6 +61,9 @@
                                 "action": "analyzer",
                                 "actionAnalyzerChartType": "day",
                                 "actionAnalyzerCoordSystem": "time",
+                                "actionAnalyzerItems": [
+                                  "Shelly_DG_Power"
+                                ],
                                 "icon": "oh:attic",
                                 "item": "Shelly_DG_Power",
                                 "title": "Dachgeschoss Leistung",
@@ -94,6 +100,9 @@
                                 "action": "analyzer",
                                 "actionAnalyzerChartType": "year",
                                 "actionAnalyzerCoordSystem": "calendar",
+                                "actionAnalyzerItems": [
+                                  "Stock1_TotalEnergy_kWh"
+                                ],
                                 "icon": "oh:firstfloor",
                                 "item": "Stock1_TotalEnergy_kWh",
                                 "title": "1. Stock Verbrauch",
@@ -114,6 +123,9 @@
                                 "action": "analyzer",
                                 "actionAnalyzerChartType": "day",
                                 "actionAnalyzerCoordSystem": "time",
+                                "actionAnalyzerItems": [
+                                  "Shelly_1OG_Power"
+                                ],
                                 "icon": "oh:firstfloor",
                                 "item": "Shelly_1OG_Power",
                                 "title": "1. Stock Leistung",
@@ -196,6 +208,9 @@
                                 "action": "analyzer",
                                 "actionAnalyzerChartType": "year",
                                 "actionAnalyzerCoordSystem": "calendar",
+                                "actionAnalyzerItems": [
+                                  "Allg_TotalEnergy_kWh"
+                                ],
                                 "icon": "oh:group",
                                 "item": "Allg_TotalEnergy_kWh",
                                 "title": "Allgemein Verbrauch",
@@ -216,6 +231,9 @@
                                 "action": "analyzer",
                                 "actionAnalyzerChartType": "day",
                                 "actionAnalyzerCoordSystem": "time",
+                                "actionAnalyzerItems": [
+                                  "Shelly_Allg_Power"
+                                ],
                                 "icon": "oh:group",
                                 "item": "Shelly_Allg_Power",
                                 "title": "Allgemein Leistung",
@@ -275,6 +293,9 @@
                                 "action": "analyzer",
                                 "actionAnalyzerChartType": "day",
                                 "actionAnalyzerCoordSystem": "time",
+                                "actionAnalyzerItems": [
+                                  "SmartmeterEinspeisung"
+                                ],
                                 "icon": "oh:group",
                                 "item": "SmartmeterEinspeisung",
                                 "title": "Hauptstromzähler Einspeisung",
@@ -311,6 +332,9 @@
                                 "action": "analyzer",
                                 "actionAnalyzerChartType": "day",
                                 "actionAnalyzerCoordSystem": "time",
+                                "actionAnalyzerItems": [
+                                  "GoodWe_HousePower"
+                                ],
                                 "icon": "oh:group",
                                 "item": "GoodWe_HousePower",
                                 "title": "PV\u0026Speicher Haus Leistung",
@@ -328,8 +352,16 @@
                             {
                               "component": "oh-label-card",
                               "config": {
+                                "action": "analyzer",
+                                "actionAnalyzerChartType": "day",
+                                "actionAnalyzerCoordSystem": "time",
+                                "actionAnalyzerItems": [
+                                  "GoodWe_TotalLoadPower"
+                                ],
                                 "icon": "oh:group",
-                                "title": "Haus Netzbezug Leistung"
+                                "item": "GoodWe_TotalLoadPower",
+                                "title": " Hausverbrauch Leistung",
+                                "trendItem": "GoodWe_TotalLoadPower"
                               }
                             }
                           ]
@@ -343,8 +375,55 @@
                             {
                               "component": "oh-label-card",
                               "config": {
+                                "action": "analyzer",
+                                "actionAnalyzerChartType": "day",
+                                "actionAnalyzerCoordSystem": "time",
+                                "actionAnalyzerItems": [
+                                  "MTTotalActivepower"
+                                ],
                                 "icon": "oh:group",
-                                "title": "Speicher Ladung in %"
+                                "item": "MTTotalActivepower",
+                                "title": "Netzbezug neg. / Einspeisung pos.",
+                                "trendItem": "MTTotalActivepower"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "action": "analyzer",
+                                "actionAnalyzerChartType": "day",
+                                "actionAnalyzerCoordSystem": "time",
+                                "actionAnalyzerItems": [
+                                  "GoodWe_PV1_Power"
+                                ],
+                                "icon": "oh:group",
+                                "item": "GoodWe_PV1_Power",
+                                "title": "PV Strang 1",
+                                "trendItem": "GoodWe_PV1_Power"
                               }
                             }
                           ]
@@ -354,7 +433,47 @@
                         "component": "oh-grid-col",
                         "config": {},
                         "slots": {
-                          "default": []
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "action": "analyzer",
+                                "actionAnalyzerChartType": "day",
+                                "actionAnalyzerCoordSystem": "time",
+                                "actionAnalyzerItems": [
+                                  "GoodWe_PV2_Power"
+                                ],
+                                "icon": "oh:group",
+                                "item": "GoodWe_PV2_Power",
+                                "title": "PV Strang 2",
+                                "trendItem": "GoodWe_PV2_Power"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "action": "analyzer",
+                                "actionAnalyzerChartType": "day",
+                                "actionAnalyzerCoordSystem": "time",
+                                "actionAnalyzerItems": [
+                                  "GoodWe_Battery_Percent_Final"
+                                ],
+                                "icon": "oh:battery",
+                                "iconUseState": false,
+                                "item": "GoodWe_Battery_Percent_Final",
+                                "title": "Stromspeicher in Prozent",
+                                "trendItem": "GoodWe_Battery_Percent_Final"
+                              }
+                            }
+                          ]
                         }
                       }
                     ]

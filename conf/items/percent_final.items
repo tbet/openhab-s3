@@ -1,0 +1,2 @@
+// Korrigierte Prozentanzeige
+Number:Dimensionless GoodWe_Battery_Percent_Final "Speicher in Prozent [%.0f %%]" <battery>

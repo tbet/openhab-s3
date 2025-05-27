@@ -1,0 +1,8 @@
+rule "Batterie Prozentanzeige korrigieren"
+when
+    Item GoodWe_Battery_Percent changed
+then
+    val raw = GoodWe_Battery_Percent.state as Number
+    GoodWe_Battery_Percent_Final.postUpdate(raw / 100)
+end
+
