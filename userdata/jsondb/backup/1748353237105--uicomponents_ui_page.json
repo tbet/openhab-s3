@@ -8,7 +8,7 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "Jun 13, 2025, 9:55:55 AM",
+      "timestamp": "May 27, 2025, 3:40:36 PM",
       "component": "oh-layout-page",
       "config": {
         "icon": "energy",
@@ -205,16 +205,8 @@
                             {
                               "component": "oh-label-card",
                               "config": {
-                                "action": "analyzer",
-                                "actionAnalyzerChartType": "year",
-                                "actionAnalyzerCoordSystem": "calendar",
-                                "actionAnalyzerItems": [
-                                  "EG_TotalEnergy_kWh"
-                                ],
                                 "icon": "oh:groundfloor",
-                                "item": "EG_TotalEnergy_kWh",
-                                "title": "Erdgeschoss Verbrauch Gesamt",
-                                "trendItem": "EG_TotalEnergy_kWh"
+                                "title": "Erdgeschoss Verbrauch Gesamt"
                               }
                             }
                           ]
@@ -228,16 +220,8 @@
                             {
                               "component": "oh-label-card",
                               "config": {
-                                "action": "analyzer",
-                                "actionAnalyzerChartType": "day",
-                                "actionAnalyzerCoordSystem": "time",
-                                "actionAnalyzerItems": [
-                                  "EG_TotalEnergy_today_kWh"
-                                ],
                                 "icon": "oh:groundfloor",
-                                "item": "EG_TotalEnergy_today_kWh",
-                                "title": "Erdgeschoss Verbrauch Heute",
-                                "trendItem": "EG_TotalEnergy_today_kWh"
+                                "title": "Erdgeschoss Verbrauch Heute"
                               }
                             }
                           ]
@@ -251,16 +235,8 @@
                             {
                               "component": "oh-label-card",
                               "config": {
-                                "action": "analyzer",
-                                "actionAnalyzerChartType": "day",
-                                "actionAnalyzerCoordSystem": "time",
-                                "actionAnalyzerItems": [
-                                  "Shelly_EG_Power"
-                                ],
                                 "icon": "oh:groundfloor",
-                                "item": "Shelly_EG_Power",
-                                "title": "Erdgeschoss Leistung",
-                                "trendItem": "Shelly_EG_Power"
+                                "title": "Erdgeschoss Leistung"
                               }
                             }
                           ]
@@ -313,16 +289,8 @@
                             {
                               "component": "oh-label-card",
                               "config": {
-                                "action": "analyzer",
-                                "actionAnalyzerChartType": "day",
-                                "actionAnalyzerCoordSystem": "time",
-                                "actionAnalyzerItems": [
-                                  "Allg_TotalEnergy_today_kWh"
-                                ],
                                 "icon": "oh:group",
-                                "item": "Allg_TotalEnergy_today_kWh",
-                                "title": "Allgemein Verbrauch Heute",
-                                "trendItem": "Allg_TotalEnergy_today_kWh"
+                                "title": "Allgemein Verbrauch Heute"
                               }
                             }
                           ]

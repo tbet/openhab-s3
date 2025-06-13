@@ -1,4 +1,5 @@
 // Rechenwerte für kWh-Darstellung (aus Wh)
 Number DG_TotalEnergy_kWh "Dachgeschoss Verbrauch kWh [%.3f kWh]" <attic>
-Number Allg_TotalEnergy_kWh "Allgemein Verbrauch kWh [%.3f kWh]" <group>
 Number Stock1_TotalEnergy_kWh "1. Stock Verbrauch kWh [%.3f kWh]" <firstfloor>
+Number EG_TotalEnergy_kWh "Erdgeschoss Verbrauch kWh [%.3f kWh]" <groundfloor>
+Number Allg_TotalEnergy_kWh "Allgemein Verbrauch kWh [%.3f kWh]" <group>

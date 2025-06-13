@@ -1,0 +1,13 @@
+Number DG_Energy_Yesterday_kWh        "Dachgeschoss Verbrauch gestern [%.2f kWh]"
+Number DG_Cost_Yesterday_EUR          "Dachgeschoss Kosten gestern [%.2f €]"
+
+Number Stock1_Energy_Yesterday_kWh    "1.Stock Verbrauch gestern [%.2f kWh]"
+Number Stock1_Cost_Yesterday_EUR      "1.Stock Kosten gestern [%.2f €]"
+
+Number EG_Energy_Yesterday_kWh        "Erdgeschoss Verbrauch gestern [%.2f kWh]"
+Number EG_Cost_Yesterday_EUR          "Erdgeschoss Kosten gestern [%.2f €]"
+
+Number Allg_Energy_Yesterday_kWh      "Allgemein Verbrauch gestern [%.2f kWh]"
+Number Allg_Cost_Yesterday_EUR        "Allgemein Kosten gestern [%.2f €]"
+
+Number Price_kWh_calculated_yesterday "Preis/kWh gestern [%.2f ct/kWh]"

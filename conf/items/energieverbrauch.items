@@ -1,0 +1,16 @@
+Number:Energy DG_TotalEnergy_today_kWh "Dachgeschoss Tagesverbrauch [%.2f kWh]" <energy>
+Number:Energy Stock1_TotalEnergy_today_kWh "1. Stock Tagesverbrauch [%.2f kWh]" <energy>
+Number:Energy EG_TotalEnergy_today_kWh "Erdgeschoss Tagesverbrauch [%.2f kWh]" <energy>
+Number:Energy Allg_TotalEnergy_today_kWh "Allgemein Tagesverbrauch [%.2f kWh]" <energy>
+
+Number DG_TotalEnergy_Yesterday_Start "Dachgeschoss Verbrauch Startwert gestern"
+Number DG_TotalEnergy_Yesterday_Consumption "Dachgeschoss Verbrauch gestern"
+
+Number Stock1_TotalEnergy_Yesterday_Start "1. Stock Verbrauch Startwert gestern"
+Number Stock1_TotalEnergy_Yesterday_Consumption "1. Stock Verbrauch gestern"
+
+Number EG_TotalEnergy_Yesterday_Start "Erdgeschoss Verbrauch Startwert gestern"
+Number EG_TotalEnergy_Yesterday_Consumption "Erdgeschoss Verbrauch gestern"
+
+Number Allg_TotalEnergy_Yesterday_Start "Allgemein Verbrauch Startwert gestern"
+Number Allg_TotalEnergy_Yesterday_Consumption "Allgemein Verbrauch gestern"

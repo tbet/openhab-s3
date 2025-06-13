@@ -13,7 +13,17 @@
           "sessionId": "dd8d9078-98a8-4f4b-805e-0a58e665c1a0",
           "refreshToken": "a04427d3854b4fa088f8f12116613a9f",
           "createdTime": "May 19, 2025, 8:24:14 PM",
-          "lastRefreshTime": "May 21, 2025, 6:38:22 AM",
+          "lastRefreshTime": "Jun 12, 2025, 3:45:34 PM",
+          "clientId": "http://zaehlerschrank-s3:8080",
+          "redirectUri": "http://zaehlerschrank-s3:8080",
+          "scope": "admin",
+          "sessionCookie": true
+        },
+        {
+          "sessionId": "8347a791-62c4-43c6-a37c-fc3e6295815e",
+          "refreshToken": "fbd605660ab34cf68d2832ff5bce8905",
+          "createdTime": "Jun 13, 2025, 9:45:20 AM",
+          "lastRefreshTime": "Jun 13, 2025, 11:18:18 AM",
           "clientId": "http://zaehlerschrank-s3:8080",
           "redirectUri": "http://zaehlerschrank-s3:8080",
           "scope": "admin",

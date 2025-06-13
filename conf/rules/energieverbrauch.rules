@@ -1,0 +1,49 @@
+rule "Berechne Tagesverbrauch und speichere CSV"
+when
+    Time cron "0 10 0 * * ?" //or
+//    Time cron "0 20 11 * * ?" // Testlauf um 11:20
+then
+    val dateStr = now.minusDays(1).toLocalDate.toString
+    val preisGestern = (Price_kWh_calculated_yesterday.state as Number).doubleValue
+
+    // DG
+    val dgStart = (DG_TotalEnergy_Yesterday_Start.state as Number).doubleValue
+    val dgEnd = (DG_TotalEnergy_kWh.state as Number).doubleValue
+    val dgVerbrauch = dgEnd - dgStart
+    val dgBetrag = dgVerbrauch * preisGestern
+    DG_TotalEnergy_Yesterday_Consumption.postUpdate(dgVerbrauch)
+    val dgLine = String::format("%s,%.3f,%.3f,%.2f", dateStr, dgVerbrauch, dgBetrag, preisGestern)
+    executeCommandLine(Duration.ofSeconds(5), "/bin/sh", "-c", "echo " + dgLine + " >> /openhab/conf/csv/dg_verbrauch.csv")
+
+    // Stock1
+    val stock1Start = (Stock1_TotalEnergy_Yesterday_Start.state as Number).doubleValue
+    val stock1End = (Stock1_TotalEnergy_kWh.state as Number).doubleValue
+    val stock1Verbrauch = stock1End - stock1Start
+    val stock1Betrag = stock1Verbrauch * preisGestern
+    Stock1_TotalEnergy_Yesterday_Consumption.postUpdate(stock1Verbrauch)
+    val stock1Line = String::format("%s,%.3f,%.3f,%.2f", dateStr, stock1Verbrauch, stock1Betrag, preisGestern)
+    executeCommandLine(Duration.ofSeconds(5), "/bin/sh", "-c", "echo " + stock1Line + " >> /openhab/conf/csv/stock1_verbrauch.csv")
+
+    // EG
+    val egStart = (EG_TotalEnergy_Yesterday_Start.state as Number).doubleValue
+    val egEnd = (EG_TotalEnergy_kWh.state as Number).doubleValue
+    val egVerbrauch = egEnd - egStart
+    val egBetrag = egVerbrauch * preisGestern
+    EG_TotalEnergy_Yesterday_Consumption.postUpdate(egVerbrauch)
+    val egLine = String::format("%s,%.3f,%.3f,%.2f", dateStr, egVerbrauch, egBetrag, preisGestern)
+    executeCommandLine(Duration.ofSeconds(5), "/bin/sh", "-c", "echo " + egLine + " >> /openhab/conf/csv/eg_verbrauch.csv")
+
+    // Allg
+    val allgStart = (Allg_TotalEnergy_Yesterday_Start.state as Number).doubleValue
+    val allgEnd = (Allg_TotalEnergy_kWh.state as Number).doubleValue
+    val allgVerbrauch = allgEnd - allgStart
+    val allgBetrag = allgVerbrauch * preisGestern
+    Allg_TotalEnergy_Yesterday_Consumption.postUpdate(allgVerbrauch)
+    val allgLine = String::format("%s,%.3f,%.3f,%.2f", dateStr, allgVerbrauch, allgBetrag, preisGestern)
+    executeCommandLine(Duration.ofSeconds(5), "/bin/sh", "-c", "echo " + allgLine + " >> /openhab/conf/csv/allg_verbrauch.csv")
+
+end
+
+
+
+

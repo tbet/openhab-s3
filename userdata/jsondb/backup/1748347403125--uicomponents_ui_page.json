@@ -8,7 +8,7 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "Jun 13, 2025, 9:55:55 AM",
+      "timestamp": "May 27, 2025, 2:03:22 PM",
       "component": "oh-layout-page",
       "config": {
         "icon": "energy",
@@ -43,31 +43,8 @@
                                 ],
                                 "icon": "oh:attic",
                                 "item": "DG_TotalEnergy_kWh",
-                                "title": "Dachgeschoss Verbrauch Gesamt",
+                                "title": "Dachgeschoss Verbrauch",
                                 "trendItem": "DG_TotalEnergy_kWh"
-                              }
-                            }
-                          ]
-                        }
-                      },
-                      {
-                        "component": "oh-grid-col",
-                        "config": {},
-                        "slots": {
-                          "default": [
-                            {
-                              "component": "oh-label-card",
-                              "config": {
-                                "action": "analyzer",
-                                "actionAnalyzerChartType": "day",
-                                "actionAnalyzerCoordSystem": "time",
-                                "actionAnalyzerItems": [
-                                  "DG_TotalEnergy_today_kWh"
-                                ],
-                                "icon": "oh:attic",
-                                "item": "DG_TotalEnergy_today_kWh",
-                                "title": "Dachgeschoss Verbrauch Heute",
-                                "trendItem": "DG_TotalEnergy_today_kWh"
                               }
                             }
                           ]
@@ -128,31 +105,8 @@
                                 ],
                                 "icon": "oh:firstfloor",
                                 "item": "Stock1_TotalEnergy_kWh",
-                                "title": "1. Stock Verbrauch Gesamt",
+                                "title": "1. Stock Verbrauch",
                                 "trendItem": "Stock1_TotalEnergy_kWh"
-                              }
-                            }
-                          ]
-                        }
-                      },
-                      {
-                        "component": "oh-grid-col",
-                        "config": {},
-                        "slots": {
-                          "default": [
-                            {
-                              "component": "oh-label-card",
-                              "config": {
-                                "action": "analyzer",
-                                "actionAnalyzerChartType": "day",
-                                "actionAnalyzerCoordSystem": "time",
-                                "actionAnalyzerItems": [
-                                  "Stock1_TotalEnergy_today_kWh"
-                                ],
-                                "icon": "oh:firstfloor",
-                                "item": "Stock1_TotalEnergy_today_kWh",
-                                "title": "1. Stock Verbrauch Heute",
-                                "trendItem": "Stock1_TotalEnergy_today_kWh"
                               }
                             }
                           ]
@@ -205,16 +159,8 @@
                             {
                               "component": "oh-label-card",
                               "config": {
-                                "action": "analyzer",
-                                "actionAnalyzerChartType": "year",
-                                "actionAnalyzerCoordSystem": "calendar",
-                                "actionAnalyzerItems": [
-                                  "EG_TotalEnergy_kWh"
-                                ],
                                 "icon": "oh:groundfloor",
-                                "item": "EG_TotalEnergy_kWh",
-                                "title": "Erdgeschoss Verbrauch Gesamt",
-                                "trendItem": "EG_TotalEnergy_kWh"
+                                "title": "Erdgeschoss Verbrauch"
                               }
                             }
                           ]
@@ -228,39 +174,8 @@
                             {
                               "component": "oh-label-card",
                               "config": {
-                                "action": "analyzer",
-                                "actionAnalyzerChartType": "day",
-                                "actionAnalyzerCoordSystem": "time",
-                                "actionAnalyzerItems": [
-                                  "EG_TotalEnergy_today_kWh"
-                                ],
                                 "icon": "oh:groundfloor",
-                                "item": "EG_TotalEnergy_today_kWh",
-                                "title": "Erdgeschoss Verbrauch Heute",
-                                "trendItem": "EG_TotalEnergy_today_kWh"
-                              }
-                            }
-                          ]
-                        }
-                      },
-                      {
-                        "component": "oh-grid-col",
-                        "config": {},
-                        "slots": {
-                          "default": [
-                            {
-                              "component": "oh-label-card",
-                              "config": {
-                                "action": "analyzer",
-                                "actionAnalyzerChartType": "day",
-                                "actionAnalyzerCoordSystem": "time",
-                                "actionAnalyzerItems": [
-                                  "Shelly_EG_Power"
-                                ],
-                                "icon": "oh:groundfloor",
-                                "item": "Shelly_EG_Power",
-                                "title": "Erdgeschoss Leistung",
-                                "trendItem": "Shelly_EG_Power"
+                                "title": "Erdgeschoss Leistung"
                               }
                             }
                           ]
@@ -298,31 +213,8 @@
                                 ],
                                 "icon": "oh:group",
                                 "item": "Allg_TotalEnergy_kWh",
-                                "title": "Allgemein Verbrauch Gesamt",
+                                "title": "Allgemein Verbrauch",
                                 "trendItem": "Allg_TotalEnergy_kWh"
-                              }
-                            }
-                          ]
-                        }
-                      },
-                      {
-                        "component": "oh-grid-col",
-                        "config": {},
-                        "slots": {
-                          "default": [
-                            {
-                              "component": "oh-label-card",
-                              "config": {
-                                "action": "analyzer",
-                                "actionAnalyzerChartType": "day",
-                                "actionAnalyzerCoordSystem": "time",
-                                "actionAnalyzerItems": [
-                                  "Allg_TotalEnergy_today_kWh"
-                                ],
-                                "icon": "oh:group",
-                                "item": "Allg_TotalEnergy_today_kWh",
-                                "title": "Allgemein Verbrauch Heute",
-                                "trendItem": "Allg_TotalEnergy_today_kWh"
                               }
                             }
                           ]

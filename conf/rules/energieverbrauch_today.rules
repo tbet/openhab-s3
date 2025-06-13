@@ -1,0 +1,30 @@
+rule "Berechne Tagesverbrauch - heute"
+when
+    Time cron "0 0/5 * * * ?" // alle 5 Minuten
+then
+    val heuteMitternacht = now.withHour(0).withMinute(0).withSecond(0).withNano(0)
+
+    // DG
+    val dgStart = DG_TotalEnergy_kWh.historicState(heuteMitternacht, "rrd4j")?.state as Number
+    val dgJetzt = DG_TotalEnergy_kWh.state as Number
+    val dgHeute = dgJetzt - dgStart
+    DG_TotalEnergy_today_kWh.postUpdate(dgHeute)
+
+    // Stock1
+    val stock1Start = Stock1_TotalEnergy_kWh.historicState(heuteMitternacht, "rrd4j")?.state as Number
+    val stock1Jetzt = Stock1_TotalEnergy_kWh.state as Number
+    val stock1Heute = stock1Jetzt - stock1Start
+    Stock1_TotalEnergy_today_kWh.postUpdate(stock1Heute)
+
+    // EG
+    val egStart = EG_TotalEnergy_kWh.historicState(heuteMitternacht, "rrd4j")?.state as Number
+    val egJetzt = EG_TotalEnergy_kWh.state as Number
+    val egHeute = egJetzt - egStart
+    EG_TotalEnergy_today_kWh.postUpdate(egHeute)
+
+    // Allg
+    val allgStart = Allg_TotalEnergy_kWh.historicState(heuteMitternacht, "rrd4j")?.state as Number
+    val allgJetzt = Allg_TotalEnergy_kWh.state as Number
+    val allgHeute = allgJetzt - allgStart
+    Allg_TotalEnergy_today_kWh.postUpdate(allgHeute)
+end

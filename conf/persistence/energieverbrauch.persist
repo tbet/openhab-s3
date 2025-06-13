@@ -1,0 +1,9 @@
+Strategies {
+    every15min : "0 */15 * * * ?"
+    everyDay   : "0 0 0 * * ?"
+}
+
+Items {
+    // Diese Items werden alle 15 Minuten gespeichert
+    DG_TotalEnergy_kWh, Stock1_TotalEnergy_kWh, EG_TotalEnergy_kWh, Allg_TotalEnergy_kWh, Price_kWh_calculated : strategy = every15min, everyChange, restoreOnStartup
+}

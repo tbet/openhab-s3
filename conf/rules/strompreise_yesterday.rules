@@ -1,0 +1,6 @@
+rule "Strompreis für gestern speichern"
+when
+    Time cron "0 0 0 * * ?" // täglich um Mitternacht
+then
+    Price_kWh_calculated_yesterday.postUpdate(Price_kWh_calculated.state)
+end

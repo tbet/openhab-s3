@@ -8,7 +8,7 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "Jun 13, 2025, 9:55:55 AM",
+      "timestamp": "Jun 13, 2025, 9:53:44 AM",
       "component": "oh-layout-page",
       "config": {
         "icon": "energy",
@@ -313,16 +313,8 @@
                             {
                               "component": "oh-label-card",
                               "config": {
-                                "action": "analyzer",
-                                "actionAnalyzerChartType": "day",
-                                "actionAnalyzerCoordSystem": "time",
-                                "actionAnalyzerItems": [
-                                  "Allg_TotalEnergy_today_kWh"
-                                ],
                                 "icon": "oh:group",
-                                "item": "Allg_TotalEnergy_today_kWh",
-                                "title": "Allgemein Verbrauch Heute",
-                                "trendItem": "Allg_TotalEnergy_today_kWh"
+                                "title": "Allgemein Verbrauch Heute"
                               }
                             }
                           ]

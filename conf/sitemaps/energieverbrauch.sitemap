@@ -1,0 +1,28 @@
+sitemap energieverbrauch label="Tagesverbrauch & Kosten"
+{
+    Frame label="Allgemeiner Strompreis" {
+        Text item=Price_kWh_calculated label="Preis pro kWh [%.2f ct]"
+    }
+
+    Frame label="DG Bereich" {
+        Text item=DG_Energy_Yesterday_kWh label="Verbrauch gestern [%.2f kWh]"
+        Text item=DG_Cost_Yesterday_EUR label="Kosten gestern [%.2f €]"
+    }
+
+    Frame label="Stockwerk 1" {
+        Text item=Stock1_Energy_Yesterday_kWh label="Verbrauch gestern [%.2f kWh]"
+        Text item=Stock1_Cost_Yesterday_EUR label="Kosten gestern [%.2f €]"
+    }
+    
+    Frame label="EG Bereich" {
+        Text item=EG_Energy_Yesterday_kWh label="Verbrauch gestern [%.2f kWh]"
+        Text item=EG_Cost_Yesterday_EUR label="Kosten gestern [%.2f €]"
+    }
+        
+    Frame label="Allgemein" {
+        Text item=Allg_Energy_Yesterday_kWh label="Verbrauch gestern [%.2f kWh]"
+        Text item=Allg_Cost_Yesterday_EUR label="Kosten gestern [%.2f €]"
+    }
+
+}
+

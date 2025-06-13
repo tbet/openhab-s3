@@ -1,0 +1,11 @@
+rule "Mittelwert berechnen"
+when
+    Time cron "0 * * * * ?"  // Jede Minute ausführen
+then
+    val avg = MTTotalActivepower.averageSince(now.minusMinutes(15))
+    if (avg !== null) {
+        MTTotalActivepowerPast15Minutes.postUpdate(avg)
+    } else {
+        logInfo("Mittelwert", "Keine historischen Daten verfügbar")
+    }
+end

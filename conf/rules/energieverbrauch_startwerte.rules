@@ -1,0 +1,10 @@
+rule "Speichere Startwert um Mitternacht"
+when
+    Time cron "0 0 0 * * ?" //or
+//    Time cron "0 15 11 * * ?" // Testlauf um 10:15
+then
+    DG_TotalEnergy_Yesterday_Start.postUpdate(DG_TotalEnergy_kWh.state as Number)
+    Stock1_TotalEnergy_Yesterday_Start.postUpdate(Stock1_TotalEnergy_kWh.state as Number)
+    EG_TotalEnergy_Yesterday_Start.postUpdate(EG_TotalEnergy_kWh.state as Number)
+    Allg_TotalEnergy_Yesterday_Start.postUpdate(Allg_TotalEnergy_kWh.state as Number)
+end

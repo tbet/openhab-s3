@@ -1,7 +1,7 @@
 Bridge mqtt:broker:mosquitto "MQTT Broker" [
   host="localhost",
   port=1883
-] 
+]
 Thing mqtt:topic:shelly_dg "Shelly Dachgeschoss" (mqtt:broker:mosquitto) {
   Channels:
     Type number : power_total "Leistung Gesamt (W)" [
@@ -10,18 +10,6 @@ Thing mqtt:topic:shelly_dg "Shelly Dachgeschoss" (mqtt:broker:mosquitto) {
     ]
     Type number : energy_total "Gesamtverbrauch (kWh)" [
       stateTopic="shellypro3em-34987a4584f0/status/emdata:0",
-      transformationPattern="JSONPATH:$.total_act"
-    ]
-}
-
-Thing mqtt:topic:shelly_allg "Shelly Allgemein" (mqtt:broker:mosquitto) {
-  Channels:
-    Type number : power_total "Leistung Gesamt (W)" [
-      stateTopic="shellypro3em-34987a464424/status/em:0",
-      transformationPattern="JSONPATH:$.total_act_power"
-    ]
-    Type number : energy_total "Gesamtverbrauch (kWh)" [
-      stateTopic="shellypro3em-34987a464424/status/emdata:0",
       transformationPattern="JSONPATH:$.total_act"
     ]
 }
@@ -38,3 +26,26 @@ Thing mqtt:topic:shelly_1og "Shelly 1. Stock" (mqtt:broker:mosquitto) {
     ]
 }
 
+Thing mqtt:topic:shelly_eg "Shelly Erdgeschoss" (mqtt:broker:mosquitto) {
+  Channels:
+    Type number : power_total "Leistung Gesamt (W)" [
+      stateTopic="shellypro3em-2cbcbba66804/status/em:0",
+      transformationPattern="JSONPATH:$.total_act_power"
+    ]
+    Type number : energy_total "Gesamtverbrauch (kWh)" [
+      stateTopic="shellypro3em-2cbcbba66804/status/emdata:0",
+      transformationPattern="JSONPATH:$.total_act"
+    ]
+}
+
+Thing mqtt:topic:shelly_allg "Shelly Allgemein" (mqtt:broker:mosquitto) {
+  Channels:
+    Type number : power_total "Leistung Gesamt (W)" [
+      stateTopic="shellypro3em-34987a464424/status/em:0",
+      transformationPattern="JSONPATH:$.total_act_power"
+    ]
+    Type number : energy_total "Gesamtverbrauch (kWh)" [
+      stateTopic="shellypro3em-34987a464424/status/emdata:0",
+      transformationPattern="JSONPATH:$.total_act"
+    ]
+}

@@ -1,0 +1,15 @@
+rule "Addiere Shelly Leistungen"
+when
+    Item Shelly_DG_Power changed or
+    Item Shelly_1OG_Power changed or
+    Item Shelly_EG_Power changed or
+    Item Shelly_Allg_Power changed
+then
+    val dg = Shelly_DG_Power.state as Number
+    val og = Shelly_1OG_Power.state as Number
+    val eg = Shelly_EG_Power.state as Number
+    val allg = Shelly_Allg_Power.state as Number
+    val total = dg + og + eg + allg
+
+    Shelly_Total_Power.postUpdate(total)
+end

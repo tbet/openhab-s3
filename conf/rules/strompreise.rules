@@ -1,0 +1,75 @@
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.io.BufferedReader
+import java.io.FileReader
+import java.util.TreeMap
+
+val priceMap = new TreeMap<LocalDate, Pair<Number, Number>>
+
+// Regel, die beim Start die CSV lädt
+rule "Preisliste laden"
+when
+    System started
+then
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+    val filePath = "/openhab/conf/csv/strompreise.csv"
+
+    try {
+    
+        val reader = new BufferedReader(new FileReader(filePath))
+        var line = reader.readLine() // Header überspringen
+
+        while ((line = reader.readLine()) !== null) {
+            val parts = line.split(",")
+            val date = LocalDate.parse(parts.get(0).trim, formatter)
+            val pv = Integer::parseInt(parts.get(1).trim)
+            val grid = Integer::parseInt(parts.get(2).trim)
+            priceMap.put(date, new Pair(pv, grid))
+        }
+
+        reader.close()
+
+        logInfo("Preise", "Preistabelle erfolgreich geladen: {}", priceMap.toString)
+
+    } catch (Exception e) {
+        logError("Preise", "Fehler beim Lesen der CSV: {}", e.getMessage)
+    }
+end
+
+// Regel zur Berechnung des aktuellen Transaktionspreises
+rule "Transaktionspreis berechnen"
+when
+    Item GoodWe_Battery_Percent_Final changed or
+    Item MTTotalActivepowerPast15Minutes changed or
+    Time cron "0 0/5 * * * ?" // alle 5 Minuten
+then
+    val nowDate = LocalDate.now
+    val activeEntry = priceMap.floorEntry(nowDate)
+
+    if (activeEntry === null) {
+        logWarn("Preise", "Kein Preis gefunden für das aktuelle Datum: {}", nowDate)
+        return
+    }
+
+    val pv_price = activeEntry.value.key
+    val grid_price = activeEntry.value.value
+
+    // Preise in Items schreiben
+    Price_kWh_PV.postUpdate(pv_price)
+    Price_kWh_Grid.postUpdate(grid_price)
+
+    // Regel anwenden
+    val batteryLevel = (GoodWe_Battery_Percent.state as Number).intValue
+    val avgPower = (MTTotalActivepowerPast15Minutes.state as Number).floatValue
+
+    logInfo("Preise", "Batterielevel: {}", batteryLevel)
+    logInfo("Preise", "DurchschnittPower: {}", avgPower)
+    if (batteryLevel > 50 && avgPower > -50) {
+        Price_kWh_calculated.postUpdate(pv_price)
+        logInfo("Preise", "if Price_kWh_calculated: {}", pv_price)
+    } else {
+        Price_kWh_calculated.postUpdate(grid_price)
+        logInfo("Preise", "else Price_kWh_calculated: {}", grid_price)
+    }
+end
+
