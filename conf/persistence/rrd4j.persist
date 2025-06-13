@@ -4,5 +4,5 @@ Strategies {
 }
 
 Items {
-    * : strategy = everyChange, everyMinute
+    * : strategy = everyChange, everyMinute, restoreOnStartup
 }
