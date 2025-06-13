@@ -1,4 +1,4 @@
-In diesem Projekt wird der Hauptstromzähler via Optokopf (USB), die Nebenstromzähler via Shelly Pro 3EM (LAN) und der Goodwe Wechselrichter GW10K-ET via ModBus (LAN) von einem Raspberrp Pi Rechner (Linux) mit Openhab im Docker Container ausgelesen.
+In diesem git Projekt (https://github.com/tbet/openhab-s3/tree/main) wird der Hauptstromzähler via Optokopf (USB), die Nebenstromzähler via Shelly Pro 3EM (LAN) und der Goodwe Wechselrichter GW10K-ET via ModBus (LAN) von einem Raspberrp Pi Rechner (Linux) mit Openhab mit RRD4J Persistence im Docker Container ausgelesen.
 
 # Openhab als Docker Container auf dem Raspi
 https://github.com/openhab/openhab-docker
