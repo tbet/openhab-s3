@@ -1,30 +1,73 @@
-rule "Berechne Tagesverbrauch - heute"
+rule "Berechne Tagesverbrauch - pv und grid getrennt"
 when
-    Time cron "0 0/5 * * * ?" // alle 5 Minuten
+    Time cron "0 0/5 * * * ?"
 then
-    val heuteMitternacht = now.withHour(0).withMinute(0).withSecond(0).withNano(0)
+    val preis = if (Price_kWh_calculated.state != NULL && Price_kWh_calculated.state != UNDEF) (Price_kWh_calculated.state as Number).doubleValue else 0.0
+    val jetzt = now
+    val start = jetzt.minusMinutes(5)
 
     // DG
-    val dgStart = DG_TotalEnergy_kWh.historicState(heuteMitternacht, "rrd4j")?.state as Number
+    val dgVorher = DG_TotalEnergy_kWh.historicState(start, "rrd4j")?.state as Number
     val dgJetzt = DG_TotalEnergy_kWh.state as Number
-    val dgHeute = dgJetzt - dgStart
-    DG_TotalEnergy_today_kWh.postUpdate(dgHeute)
+    val dgDiff = dgJetzt.doubleValue - dgVorher.doubleValue
+    val dgPv = if (DG_TotalEnergy_today_pv_kWh.state != NULL && DG_TotalEnergy_today_pv_kWh.state != UNDEF) (DG_TotalEnergy_today_pv_kWh.state as Number).doubleValue else 0.0
+    val dgGrid = if (DG_TotalEnergy_today_grid_kWh.state != NULL && DG_TotalEnergy_today_grid_kWh.state != UNDEF) (DG_TotalEnergy_today_grid_kWh.state as Number).doubleValue else 0.0
 
-    // Stock1
-    val stock1Start = Stock1_TotalEnergy_kWh.historicState(heuteMitternacht, "rrd4j")?.state as Number
+    // Gleiches für andere Etagen
+    val stock1Vorher = Stock1_TotalEnergy_kWh.historicState(start, "rrd4j")?.state as Number
     val stock1Jetzt = Stock1_TotalEnergy_kWh.state as Number
-    val stock1Heute = stock1Jetzt - stock1Start
-    Stock1_TotalEnergy_today_kWh.postUpdate(stock1Heute)
+    val stock1Diff = stock1Jetzt.doubleValue - stock1Vorher.doubleValue
+    val stock1Pv = if (Stock1_TotalEnergy_today_pv_kWh.state != NULL && Stock1_TotalEnergy_today_pv_kWh.state != UNDEF) (Stock1_TotalEnergy_today_pv_kWh.state as Number).doubleValue else 0.0
+    val stock1Grid = if (Stock1_TotalEnergy_today_grid_kWh.state != NULL && Stock1_TotalEnergy_today_grid_kWh.state != UNDEF) (Stock1_TotalEnergy_today_grid_kWh.state as Number).doubleValue else 0.0
 
-    // EG
-    val egStart = EG_TotalEnergy_kWh.historicState(heuteMitternacht, "rrd4j")?.state as Number
+    val egVorher = EG_TotalEnergy_kWh.historicState(start, "rrd4j")?.state as Number
     val egJetzt = EG_TotalEnergy_kWh.state as Number
-    val egHeute = egJetzt - egStart
-    EG_TotalEnergy_today_kWh.postUpdate(egHeute)
+    val egDiff = egJetzt.doubleValue - egVorher.doubleValue
+    val egPv = if (EG_TotalEnergy_today_pv_kWh.state != NULL && EG_TotalEnergy_today_pv_kWh.state != UNDEF) (EG_TotalEnergy_today_pv_kWh.state as Number).doubleValue else 0.0
+    val egGrid = if (EG_TotalEnergy_today_grid_kWh.state != NULL && EG_TotalEnergy_today_grid_kWh.state != UNDEF) (EG_TotalEnergy_today_grid_kWh.state as Number).doubleValue else 0.0
 
-    // Allg
-    val allgStart = Allg_TotalEnergy_kWh.historicState(heuteMitternacht, "rrd4j")?.state as Number
+    val allgVorher = Allg_TotalEnergy_kWh.historicState(start, "rrd4j")?.state as Number
     val allgJetzt = Allg_TotalEnergy_kWh.state as Number
-    val allgHeute = allgJetzt - allgStart
-    Allg_TotalEnergy_today_kWh.postUpdate(allgHeute)
+    val allgDiff = allgJetzt.doubleValue - allgVorher.doubleValue
+    val allgPv = if (Allg_TotalEnergy_today_pv_kWh.state != NULL && Allg_TotalEnergy_today_pv_kWh.state != UNDEF) (Allg_TotalEnergy_today_pv_kWh.state as Number).doubleValue else 0.0
+    val allgGrid = if (Allg_TotalEnergy_today_grid_kWh.state != NULL && Allg_TotalEnergy_today_grid_kWh.state != UNDEF) (Allg_TotalEnergy_today_grid_kWh.state as Number).doubleValue else 0.0
+
+    logInfo("energieverbrauch", "Aktueller Strompreis: " + preis + " €/kWh")
+
+    if (dgDiff > 0) {
+        if (preis >= 0.30) {
+            logInfo("energieverbrauch", "Preis >= 0.30 €/kWh → DG Netzbezug (grid)")
+            DG_TotalEnergy_today_grid_kWh.postUpdate(dgGrid + dgDiff)
+        } else {
+            logInfo("energieverbrauch", "Preis < 0.30 €/kWh → DG PV-Bezug")
+            DG_TotalEnergy_today_pv_kWh.postUpdate(dgPv + dgDiff)
+        }
+    }
+    if (stock1Diff > 0) {
+        if (preis >= 0.30) {
+            logInfo("energieverbrauch", "Preis >= 0.30 €/kWh → 1. Stock Netzbezug (grid)")
+            Stock1_TotalEnergy_today_grid_kWh.postUpdate(stock1Grid + stock1Diff)
+        } else {
+            logInfo("energieverbrauch", "Preis < 0.30 €/kWh → 1. Stock PV-Bezug")
+            Stock1_TotalEnergy_today_pv_kWh.postUpdate(stock1Pv + stock1Diff)
+        }
+    }
+    if (egDiff > 0) {
+        if (preis >= 0.30) {
+            logInfo("energieverbrauch", "Preis >= 0.30 €/kWh → EG Netzbezug (grid)")
+            EG_TotalEnergy_today_grid_kWh.postUpdate(egGrid + egDiff)
+        } else {
+            logInfo("energieverbrauch", "Preis < 0.30 €/kWh → EG PV-Bezug")
+            EG_TotalEnergy_today_pv_kWh.postUpdate(egPv + egDiff)
+        }
+    }
+    if (allgDiff > 0) {
+        if (preis >= 0.30) {
+            logInfo("energieverbrauch", "Preis >= 0.30 €/kWh → Allgemein Netzbezug (grid)")
+            Allg_TotalEnergy_today_grid_kWh.postUpdate(allgGrid + allgDiff)
+        } else {
+            logInfo("energieverbrauch", "Preis < 0.30 €/kWh → Allgemein PV-Bezug")
+            Allg_TotalEnergy_today_pv_kWh.postUpdate(allgPv + allgDiff)
+        }
+    }
 end

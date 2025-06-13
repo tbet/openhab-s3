@@ -8,7 +8,7 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "Jun 13, 2025, 9:55:55 AM",
+      "timestamp": "Jun 13, 2025, 7:31:44 PM",
       "component": "oh-layout-page",
       "config": {
         "icon": "energy",
@@ -37,7 +37,7 @@
                               "config": {
                                 "action": "analyzer",
                                 "actionAnalyzerChartType": "year",
-                                "actionAnalyzerCoordSystem": "calendar",
+                                "actionAnalyzerCoordSystem": "aggregate",
                                 "actionAnalyzerItems": [
                                   "DG_TotalEnergy_kWh"
                                 ],
@@ -62,12 +62,35 @@
                                 "actionAnalyzerChartType": "day",
                                 "actionAnalyzerCoordSystem": "time",
                                 "actionAnalyzerItems": [
-                                  "DG_TotalEnergy_today_kWh"
+                                  "DG_TotalEnergy_today_pv_kWh"
                                 ],
                                 "icon": "oh:attic",
-                                "item": "DG_TotalEnergy_today_kWh",
-                                "title": "Dachgeschoss Verbrauch Heute",
-                                "trendItem": "DG_TotalEnergy_today_kWh"
+                                "item": "DG_TotalEnergy_today_pv_kWh",
+                                "title": "Dachgeschoss Verbrauch PV Heute",
+                                "trendItem": "DG_TotalEnergy_today_pv_kWh"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "action": "analyzer",
+                                "actionAnalyzerChartType": "day",
+                                "actionAnalyzerCoordSystem": "time",
+                                "actionAnalyzerItems": [
+                                  "DG_TotalEnergy_today_grid_kWh"
+                                ],
+                                "icon": "oh:attic",
+                                "item": "DG_TotalEnergy_today_grid_kWh",
+                                "title": "Dachgeschoss Verbrauch Netz Heute",
+                                "trendItem": "DG_TotalEnergy_today_grid_kWh"
                               }
                             }
                           ]
@@ -122,7 +145,7 @@
                               "config": {
                                 "action": "analyzer",
                                 "actionAnalyzerChartType": "year",
-                                "actionAnalyzerCoordSystem": "calendar",
+                                "actionAnalyzerCoordSystem": "aggregate",
                                 "actionAnalyzerItems": [
                                   "Stock1_TotalEnergy_kWh"
                                 ],
@@ -147,12 +170,35 @@
                                 "actionAnalyzerChartType": "day",
                                 "actionAnalyzerCoordSystem": "time",
                                 "actionAnalyzerItems": [
-                                  "Stock1_TotalEnergy_today_kWh"
+                                  "Stock1_TotalEnergy_today_pv_kWh"
                                 ],
                                 "icon": "oh:firstfloor",
-                                "item": "Stock1_TotalEnergy_today_kWh",
-                                "title": "1. Stock Verbrauch Heute",
-                                "trendItem": "Stock1_TotalEnergy_today_kWh"
+                                "item": "Stock1_TotalEnergy_today_pv_kWh",
+                                "title": "1. Stock Verbrauch PV Heute",
+                                "trendItem": "Stock1_TotalEnergy_today_pv_kWh"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "action": "analyzer",
+                                "actionAnalyzerChartType": "day",
+                                "actionAnalyzerCoordSystem": "time",
+                                "actionAnalyzerItems": [
+                                  "Stock1_TotalEnergy_today_grid_kWh"
+                                ],
+                                "icon": "oh:firstfloor",
+                                "item": "Stock1_TotalEnergy_today_grid_kWh",
+                                "title": "1. Stock Verbrauch Netz Heute",
+                                "trendItem": "Stock1_TotalEnergy_today_grid_kWh"
                               }
                             }
                           ]
@@ -207,7 +253,7 @@
                               "config": {
                                 "action": "analyzer",
                                 "actionAnalyzerChartType": "year",
-                                "actionAnalyzerCoordSystem": "calendar",
+                                "actionAnalyzerCoordSystem": "aggregate",
                                 "actionAnalyzerItems": [
                                   "EG_TotalEnergy_kWh"
                                 ],
@@ -232,12 +278,35 @@
                                 "actionAnalyzerChartType": "day",
                                 "actionAnalyzerCoordSystem": "time",
                                 "actionAnalyzerItems": [
-                                  "EG_TotalEnergy_today_kWh"
+                                  "EG_TotalEnergy_today_pv_kWh"
                                 ],
                                 "icon": "oh:groundfloor",
-                                "item": "EG_TotalEnergy_today_kWh",
-                                "title": "Erdgeschoss Verbrauch Heute",
-                                "trendItem": "EG_TotalEnergy_today_kWh"
+                                "item": "EG_TotalEnergy_today_pv_kWh",
+                                "title": "Erdgeschoss Verbrauch PV Heute",
+                                "trendItem": "EG_TotalEnergy_today_pv_kWh"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "action": "analyzer",
+                                "actionAnalyzerChartType": "day",
+                                "actionAnalyzerCoordSystem": "time",
+                                "actionAnalyzerItems": [
+                                  "EG_TotalEnergy_today_grid_kWh"
+                                ],
+                                "icon": "oh:groundfloor",
+                                "item": "EG_TotalEnergy_today_grid_kWh",
+                                "title": "Erdgeschoss Verbrauch Netz Heute",
+                                "trendItem": "EG_TotalEnergy_today_grid_kWh"
                               }
                             }
                           ]
@@ -292,7 +361,7 @@
                               "config": {
                                 "action": "analyzer",
                                 "actionAnalyzerChartType": "year",
-                                "actionAnalyzerCoordSystem": "calendar",
+                                "actionAnalyzerCoordSystem": "aggregate",
                                 "actionAnalyzerItems": [
                                   "Allg_TotalEnergy_kWh"
                                 ],
@@ -317,12 +386,35 @@
                                 "actionAnalyzerChartType": "day",
                                 "actionAnalyzerCoordSystem": "time",
                                 "actionAnalyzerItems": [
-                                  "Allg_TotalEnergy_today_kWh"
+                                  "Allg_TotalEnergy_today_pv_kWh"
                                 ],
                                 "icon": "oh:group",
-                                "item": "Allg_TotalEnergy_today_kWh",
-                                "title": "Allgemein Verbrauch Heute",
-                                "trendItem": "Allg_TotalEnergy_today_kWh"
+                                "item": "Allg_TotalEnergy_today_pv_kWh",
+                                "title": "Allgemein Verbrauch PV Heute",
+                                "trendItem": "Allg_TotalEnergy_today_pv_kWh"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "action": "analyzer",
+                                "actionAnalyzerChartType": "day",
+                                "actionAnalyzerCoordSystem": "time",
+                                "actionAnalyzerItems": [
+                                  "Allg_TotalEnergy_today_grid_kWh"
+                                ],
+                                "icon": "oh:group",
+                                "item": "Allg_TotalEnergy_today_grid_kWh",
+                                "title": "Allgemein Verbrauch Netz Heute",
+                                "trendItem": "Allg_TotalEnergy_today_grid_kWh"
                               }
                             }
                           ]

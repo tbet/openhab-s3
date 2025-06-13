@@ -15,22 +15,19 @@ then
     val filePath = "/openhab/conf/csv/strompreise.csv"
 
     try {
-    
         val reader = new BufferedReader(new FileReader(filePath))
         var line = reader.readLine() // Header überspringen
 
         while ((line = reader.readLine()) !== null) {
             val parts = line.split(",")
             val date = LocalDate.parse(parts.get(0).trim, formatter)
-            val pv = Integer::parseInt(parts.get(1).trim)
-            val grid = Integer::parseInt(parts.get(2).trim)
-            priceMap.put(date, new Pair(pv, grid))
+            val pvPrice = Double::parseDouble(parts.get(1).trim)
+            val gridPrice = Double::parseDouble(parts.get(2).trim)
+            logInfo("Preise", "PV: " + pvPrice + " Grid: " + gridPrice)
+            priceMap.put(date, new Pair(pvPrice, gridPrice))
         }
-
         reader.close()
-
         logInfo("Preise", "Preistabelle erfolgreich geladen: {}", priceMap.toString)
-
     } catch (Exception e) {
         logError("Preise", "Fehler beim Lesen der CSV: {}", e.getMessage)
     }
@@ -72,4 +69,3 @@ then
         logInfo("Preise", "else Price_kWh_calculated: {}", grid_price)
     }
 end
-

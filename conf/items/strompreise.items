@@ -1,3 +1,3 @@
-Number Price_kWh_PV "Preis PV [%.1f ct/kWh]"
-Number Price_kWh_Grid "Preis Netz [%.1f ct/kWh]"
-Number Price_kWh_calculated "Preis berechnet [%.1f ct/kWh]"
+Number Price_kWh_PV "Preis PV [%.2f ct/kWh]"
+Number Price_kWh_Grid "Preis Netz [%.2f ct/kWh]"
+Number Price_kWh_calculated "Preis berechnet [%.2f ct/kWh]"

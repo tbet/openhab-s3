@@ -1,49 +1,49 @@
-rule "Berechne Tagesverbrauch und speichere CSV"
+rule "Tagesabschluss CSV und Reset"
 when
     Time cron "0 10 0 * * ?" //or
-//    Time cron "0 20 11 * * ?" // Testlauf um 11:20
+//    Time cron "0 00 19 * * ?" // Testlauf um 19:00
 then
     val dateStr = now.minusDays(1).toLocalDate.toString
-    val preisGestern = (Price_kWh_calculated_yesterday.state as Number).doubleValue
 
-    // DG
-    val dgStart = (DG_TotalEnergy_Yesterday_Start.state as Number).doubleValue
-    val dgEnd = (DG_TotalEnergy_kWh.state as Number).doubleValue
-    val dgVerbrauch = dgEnd - dgStart
-    val dgBetrag = dgVerbrauch * preisGestern
-    DG_TotalEnergy_Yesterday_Consumption.postUpdate(dgVerbrauch)
-    val dgLine = String::format("%s,%.3f,%.3f,%.2f", dateStr, dgVerbrauch, dgBetrag, preisGestern)
+    // Hilfsfunktion inline (kein `def`!)
+    val preisGrid = if (Price_kWh_Grid.state != NULL && Price_kWh_Grid.state != UNDEF) (Price_kWh_Grid.state as Number).doubleValue else 0.0
+    val preisPV   = if (Price_kWh_PV.state != NULL && Price_kWh_PV.state != UNDEF) (Price_kWh_PV.state as Number).doubleValue else 0.0
+
+    val dgPv   = if (DG_TotalEnergy_today_pv_kWh.state != NULL && DG_TotalEnergy_today_pv_kWh.state != UNDEF) (DG_TotalEnergy_today_pv_kWh.state as Number).doubleValue else 0.0
+    val dgGrid = if (DG_TotalEnergy_today_grid_kWh.state != NULL && DG_TotalEnergy_today_grid_kWh.state != UNDEF) (DG_TotalEnergy_today_grid_kWh.state as Number).doubleValue else 0.0
+    val dgPvBetrag = dgPv * preisPV
+    val dgGridBetrag = dgGrid * preisGrid
+    val dgLine = String::format("%s,%.3f,%.2f,%.2f,%.3f,%.2f,%.2f", dateStr, dgGrid, dgGridBetrag, preisGrid, dgPv, dgPvBetrag, preisPV)
     executeCommandLine(Duration.ofSeconds(5), "/bin/sh", "-c", "echo " + dgLine + " >> /openhab/conf/csv/dg_verbrauch.csv")
 
-    // Stock1
-    val stock1Start = (Stock1_TotalEnergy_Yesterday_Start.state as Number).doubleValue
-    val stock1End = (Stock1_TotalEnergy_kWh.state as Number).doubleValue
-    val stock1Verbrauch = stock1End - stock1Start
-    val stock1Betrag = stock1Verbrauch * preisGestern
-    Stock1_TotalEnergy_Yesterday_Consumption.postUpdate(stock1Verbrauch)
-    val stock1Line = String::format("%s,%.3f,%.3f,%.2f", dateStr, stock1Verbrauch, stock1Betrag, preisGestern)
+    val stock1Pv   = if (Stock1_TotalEnergy_today_pv_kWh.state != NULL && Stock1_TotalEnergy_today_pv_kWh.state != UNDEF) (Stock1_TotalEnergy_today_pv_kWh.state as Number).doubleValue else 0.0
+    val stock1Grid = if (Stock1_TotalEnergy_today_grid_kWh.state != NULL && Stock1_TotalEnergy_today_grid_kWh.state != UNDEF) (Stock1_TotalEnergy_today_grid_kWh.state as Number).doubleValue else 0.0
+    val stock1PvBetrag = stock1Pv * preisPV
+    val stock1GridBetrag = stock1Grid * preisGrid
+    val stock1Line = String::format("%s,%.3f,%.2f,%.2f,%.3f,%.2f,%.2f", dateStr, stock1Grid, stock1GridBetrag, preisGrid, stock1Pv, stock1PvBetrag, preisPV)
     executeCommandLine(Duration.ofSeconds(5), "/bin/sh", "-c", "echo " + stock1Line + " >> /openhab/conf/csv/stock1_verbrauch.csv")
 
-    // EG
-    val egStart = (EG_TotalEnergy_Yesterday_Start.state as Number).doubleValue
-    val egEnd = (EG_TotalEnergy_kWh.state as Number).doubleValue
-    val egVerbrauch = egEnd - egStart
-    val egBetrag = egVerbrauch * preisGestern
-    EG_TotalEnergy_Yesterday_Consumption.postUpdate(egVerbrauch)
-    val egLine = String::format("%s,%.3f,%.3f,%.2f", dateStr, egVerbrauch, egBetrag, preisGestern)
+    val egPv   = if (EG_TotalEnergy_today_pv_kWh.state != NULL && EG_TotalEnergy_today_pv_kWh.state != UNDEF) (EG_TotalEnergy_today_pv_kWh.state as Number).doubleValue else 0.0
+    val egGrid = if (EG_TotalEnergy_today_grid_kWh.state != NULL && EG_TotalEnergy_today_grid_kWh.state != UNDEF) (EG_TotalEnergy_today_grid_kWh.state as Number).doubleValue else 0.0
+    val egPvBetrag = egPv * preisPV
+    val egGridBetrag = egGrid * preisGrid
+    val egLine = String::format("%s,%.3f,%.2f,%.2f,%.3f,%.2f,%.2f", dateStr, egGrid, egGridBetrag, preisGrid, egPv, egPvBetrag, preisPV)
     executeCommandLine(Duration.ofSeconds(5), "/bin/sh", "-c", "echo " + egLine + " >> /openhab/conf/csv/eg_verbrauch.csv")
 
-    // Allg
-    val allgStart = (Allg_TotalEnergy_Yesterday_Start.state as Number).doubleValue
-    val allgEnd = (Allg_TotalEnergy_kWh.state as Number).doubleValue
-    val allgVerbrauch = allgEnd - allgStart
-    val allgBetrag = allgVerbrauch * preisGestern
-    Allg_TotalEnergy_Yesterday_Consumption.postUpdate(allgVerbrauch)
-    val allgLine = String::format("%s,%.3f,%.3f,%.2f", dateStr, allgVerbrauch, allgBetrag, preisGestern)
+    val allgPv   = if (Allg_TotalEnergy_today_pv_kWh.state != NULL && Allg_TotalEnergy_today_pv_kWh.state != UNDEF) (Allg_TotalEnergy_today_pv_kWh.state as Number).doubleValue else 0.0
+    val allgGrid = if (Allg_TotalEnergy_today_grid_kWh.state != NULL && Allg_TotalEnergy_today_grid_kWh.state != UNDEF) (Allg_TotalEnergy_today_grid_kWh.state as Number).doubleValue else 0.0
+    val allgPvBetrag = allgPv * preisPV
+    val allgGridBetrag = allgGrid * preisGrid
+    val allgLine = String::format("%s,%.3f,%.2f,%.2f,%.3f,%.2f,%.2f", dateStr, allgGrid, allgGridBetrag, preisGrid, allgPv, allgPvBetrag, preisPV)
     executeCommandLine(Duration.ofSeconds(5), "/bin/sh", "-c", "echo " + allgLine + " >> /openhab/conf/csv/allg_verbrauch.csv")
 
+    // Reset Items
+    DG_TotalEnergy_today_pv_kWh.postUpdate(0)
+    DG_TotalEnergy_today_grid_kWh.postUpdate(0)
+    Stock1_TotalEnergy_today_pv_kWh.postUpdate(0)
+    Stock1_TotalEnergy_today_grid_kWh.postUpdate(0)
+    EG_TotalEnergy_today_pv_kWh.postUpdate(0)
+    EG_TotalEnergy_today_grid_kWh.postUpdate(0)
+    Allg_TotalEnergy_today_pv_kWh.postUpdate(0)
+    Allg_TotalEnergy_today_grid_kWh.postUpdate(0)
 end
-
-
-
-
