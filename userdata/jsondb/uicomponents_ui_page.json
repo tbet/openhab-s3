@@ -8,7 +8,7 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "Jun 13, 2025, 7:31:44 PM",
+      "timestamp": "Jun 13, 2025, 8:02:38 PM",
       "component": "oh-layout-page",
       "config": {
         "icon": "energy",
@@ -469,7 +469,7 @@
                               "config": {
                                 "action": "analyzer",
                                 "actionAnalyzerChartType": "year",
-                                "actionAnalyzerCoordSystem": "calendar",
+                                "actionAnalyzerCoordSystem": "aggregate",
                                 "actionAnalyzerItems": [
                                   "SmartmeterVerbrauch"
                                 ],
@@ -492,7 +492,7 @@
                               "config": {
                                 "action": "analyzer",
                                 "actionAnalyzerChartType": "day",
-                                "actionAnalyzerCoordSystem": "time",
+                                "actionAnalyzerCoordSystem": "aggregate",
                                 "actionAnalyzerItems": [
                                   "SmartmeterEinspeisung"
                                 ],
