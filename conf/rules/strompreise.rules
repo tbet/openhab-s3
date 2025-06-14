@@ -61,7 +61,7 @@ then
 
     logInfo("Preise", "Batterielevel: {}", batteryLevel)
     logInfo("Preise", "DurchschnittPower: {}", avgPower)
-    if (batteryLevel > 50 && avgPower > -50) {
+    if (batteryLevel > 50 && avgPower > -100) {
         Price_kWh_calculated.postUpdate(pv_price)
         logInfo("Preise", "if Price_kWh_calculated: {}", pv_price)
     } else {
