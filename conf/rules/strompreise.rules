@@ -9,6 +9,7 @@ val priceMap = new TreeMap<LocalDate, Pair<Number, Number>>
 // Regel, die beim Start die CSV lädt
 rule "Preisliste laden"
 when
+    Time cron "0 30 0 * * ?" or // jeden Tag um 0:30 ausführen
     System started
 then
     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")

@@ -8,7 +8,7 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "Jun 13, 2025, 8:02:38 PM",
+      "timestamp": "Jun 15, 2025, 9:51:40 PM",
       "component": "oh-layout-page",
       "config": {
         "icon": "energy",
@@ -635,20 +635,201 @@
                         "slots": {
                           "default": [
                             {
-                              "component": "oh-label-card",
-                              "config": {}
-                            }
-                          ]
-                        }
-                      },
-                      {
-                        "component": "oh-grid-col",
-                        "config": {},
-                        "slots": {
-                          "default": [
-                            {
-                              "component": "oh-label-card",
-                              "config": {}
+                              "component": "f7-card",
+                              "config": {
+                                "title": "\u003ditems.Strompreis_Status.state"
+                              },
+                              "slots": {
+                                "default": [
+                                  {
+                                    "component": "oh-grid-row",
+                                    "config": {},
+                                    "slots": {
+                                      "default": [
+                                        {
+                                          "component": "oh-grid-col",
+                                          "config": {
+                                            "width": 10.0
+                                          },
+                                          "slots": {
+                                            "default": [
+                                              {
+                                                "component": "Label",
+                                                "config": {
+                                                  "text": "Datum:"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "component": "oh-grid-col",
+                                          "config": {
+                                            "width": 25.0
+                                          },
+                                          "slots": {
+                                            "default": [
+                                              {
+                                                "component": "oh-stepper",
+                                                "config": {
+                                                  "item": "Strompreis_NeuesDatum_Tag",
+                                                  "max": 31.0,
+                                                  "min": 0.0,
+                                                  "step": 1.0,
+                                                  "title": "Tag"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "component": "oh-grid-col",
+                                          "config": {
+                                            "width": 25.0
+                                          },
+                                          "slots": {
+                                            "default": [
+                                              {
+                                                "component": "oh-stepper",
+                                                "config": {
+                                                  "item": "Strompreis_NeuesDatum_Monat",
+                                                  "max": 12.0,
+                                                  "min": 0.0,
+                                                  "step": 1.0,
+                                                  "title": "Monat"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "component": "oh-grid-col",
+                                          "config": {
+                                            "width": 40.0
+                                          },
+                                          "slots": {
+                                            "default": [
+                                              {
+                                                "component": "oh-stepper",
+                                                "config": {
+                                                  "item": "Strompreis_NeuesDatum_Jahr",
+                                                  "max": 2050.0,
+                                                  "min": 2024.0,
+                                                  "step": 1.0,
+                                                  "title": "Jahr"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component": "oh-grid-row",
+                                    "config": {},
+                                    "slots": {
+                                      "default": [
+                                        {
+                                          "component": "oh-grid-col",
+                                          "config": {
+                                            "width": 30.0
+                                          },
+                                          "slots": {
+                                            "default": [
+                                              {
+                                                "component": "Label",
+                                                "config": {
+                                                  "text": "PV-Preis:"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "component": "oh-grid-col",
+                                          "config": {
+                                            "width": 70.0
+                                          },
+                                          "slots": {
+                                            "default": [
+                                              {
+                                                "component": "oh-stepper",
+                                                "config": {
+                                                  "item": "Strompreis_NeuerPreisPV",
+                                                  "max": 1.0,
+                                                  "min": 0.19,
+                                                  "step": 0.01,
+                                                  "suffix": "€/kWh",
+                                                  "title": ""
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component": "oh-grid-row",
+                                    "config": {},
+                                    "slots": {
+                                      "default": [
+                                        {
+                                          "component": "oh-grid-col",
+                                          "config": {
+                                            "width": 30.0
+                                          },
+                                          "slots": {
+                                            "default": [
+                                              {
+                                                "component": "Label",
+                                                "config": {
+                                                  "text": "Netz-Preis:"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "component": "oh-grid-col",
+                                          "config": {
+                                            "width": 70.0
+                                          },
+                                          "slots": {
+                                            "default": [
+                                              {
+                                                "component": "oh-stepper",
+                                                "config": {
+                                                  "item": "Strompreis_NeuerPreisGrid",
+                                                  "max": 1.0,
+                                                  "min": 0.29,
+                                                  "step": 0.01,
+                                                  "suffix": "€/kWh"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component": "oh-button",
+                                    "config": {
+                                      "action": "command",
+                                      "actionCommand": "ON",
+                                      "actionItem": "Strompreis_Speichern",
+                                      "style": {
+                                        "background-color": "#007AFF",
+                                        "color": "white",
+                                        "margin-top": "10px"
+                                      },
+                                      "text": "Speichern"
+                                    }
+                                  }
+                                ]
+                              }
                             }
                           ]
                         }
@@ -780,6 +961,119 @@
                                 "item": "GoodWe_Battery_Percent_Final",
                                 "title": "Stromspeicher in Prozent",
                                 "trendItem": "GoodWe_Battery_Percent_Final"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "grid": [],
+        "masonry": []
+      }
+    }
+  },
+  "page_51b372a6dc": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "page_51b372a6dc",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Jun 15, 2025, 6:23:12 PM",
+      "component": "oh-layout-page",
+      "config": {
+        "label": "Testpage",
+        "title": "Datepicker Test"
+      },
+      "slots": {
+        "canvas": [],
+        "default": [],
+        "grid": [
+          {
+            "component": "oh-grid-row",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-col",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-input",
+                        "config": {
+                          "clearButton": true,
+                          "item": "Strompreis_NeuesDatum",
+                          "title": "Datum",
+                          "type": "date"
+                        }
+                      },
+                      {
+                        "component": "oh-label-card",
+                        "config": {
+                          "label": "\u003ditems.Strompreis_NeuesDatum.displayState || \"NULL\"",
+                          "title": "Wert"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "masonry": []
+      }
+    }
+  },
+  "page_a3d5dfc918": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "page_a3d5dfc918",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Jun 15, 2025, 7:01:47 PM",
+      "component": "oh-layout-page",
+      "config": {
+        "label": "TestTest"
+      },
+      "slots": {
+        "canvas": [],
+        "default": [
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-input-card",
+                              "config": {
+                                "item": "Strompreis_NeuesDatum",
+                                "pattern": "\\d{4}-\\d{2}-\\d{2}",
+                                "placeholder": "2024-12-25",
+                                "title": "Datumsauswahl",
+                                "type": "text"
                               }
                             }
                           ]

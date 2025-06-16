@@ -1,3 +1,11 @@
 Number Price_kWh_PV "Preis PV [%.2f ct/kWh]"
 Number Price_kWh_Grid "Preis Netz [%.2f ct/kWh]"
 Number Price_kWh_calculated "Preis berechnet [%.2f ct/kWh]"
+
+Number Strompreis_NeuesDatum_Tag
+Number Strompreis_NeuesDatum_Monat 
+Number Strompreis_NeuesDatum_Jahr
+Number Strompreis_NeuerPreisPV
+Number Strompreis_NeuerPreisGrid
+Switch Strompreis_Speichern
+String Strompreis_Status
