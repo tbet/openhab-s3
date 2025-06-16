@@ -1,48 +1,50 @@
-// Triggers:
-// - When item Strompreis_Speichern received command ON
+rule "Neuen Strompreis hinzufügen"
+when
+    Item Strompreis_Speichern received command ON
+then
 
-// context: strompreise_add-1
-Strompreis_Speichern.postUpdate(OFF)
-Strompreis_Status.postUpdate("❌ Fehlerhafe Daten: " + Strompreis_NeuesDatum_Jahr.state + "-" + 
-                                                         Strompreis_NeuesDatum_Monat.state + "-" + 
-                                                         Strompreis_NeuesDatum_Tag.state + 
+    Strompreis_Speichern.postUpdate(OFF)
+    Strompreis_Status.postUpdate("❌ Fehlerhafe Daten: " + Strompreis_NeuesDatum_Jahr.state + "-" + 
+                                                          Strompreis_NeuesDatum_Monat.state + "-" + 
+                                                          Strompreis_NeuesDatum_Tag.state + 
                                                          " PV-Preis:" + Strompreis_NeuerPreisPV.state + 
                                                          " Netz-Preis:" + Strompreis_NeuerPreisGrid.state)
 
-// Formatierung mit führenden Nullen
-val jahr  = Strompreis_NeuesDatum_Jahr.state.toString
-val monat = String.format("%02d", (Strompreis_NeuesDatum_Monat.state as DecimalType).intValue)
-val tag   = String.format("%02d", (Strompreis_NeuesDatum_Tag.state as DecimalType).intValue)
-val datum = jahr + "-" + monat + "-" + tag
+    // Formatierung mit führenden Nullen
+    val jahr  = Strompreis_NeuesDatum_Jahr.state.toString
+    val monat = String.format("%02d", (Strompreis_NeuesDatum_Monat.state as DecimalType).intValue)
+    val tag   = String.format("%02d", (Strompreis_NeuesDatum_Tag.state as DecimalType).intValue)
+    val datum = jahr + "-" + monat + "-" + tag
 
-val pv = Strompreis_NeuerPreisPV.state.toString
-val grid = Strompreis_NeuerPreisGrid.state.toString
+    val pv = Strompreis_NeuerPreisPV.state.toString
+    val grid = Strompreis_NeuerPreisGrid.state.toString
 
-if (datum !== null && pv !== null && grid !== null) {
-    val line = datum + "," + pv + "," + grid
-    try {
-        executeCommandLine(Duration.ofSeconds(5), "/bin/sh", "-c",
-            "echo '" + line + "' >> /openhab/conf/csv/strompreise.csv")
-        logInfo("Strompreise", "Neue Zeile hinzugefügt: " + line)
-        Strompreis_Status.postUpdate("✅ Neuer Strompreis gespeichert: " + line)
+    if (datum !== null && pv !== null && grid !== null) {
+        val line = datum + "," + pv + "," + grid
+        try {
+            executeCommandLine(Duration.ofSeconds(5), "/bin/sh", "-c",
+                "echo '" + line + "' >> /openhab/conf/csv/strompreise.csv")
+            logInfo("Strompreise", "Neue Zeile hinzugefügt: " + line)
+            Strompreis_Status.postUpdate("✅ Neuer Strompreis gespeichert: " + line)
 
-        // Reset-Eingaben
-        Strompreis_NeuesDatum_Tag.postUpdate(NULL)
-        Strompreis_NeuesDatum_Monat.postUpdate(NULL)
-        Strompreis_NeuesDatum_Jahr.postUpdate(NULL)
-        Strompreis_NeuerPreisPV.postUpdate(NULL)
-        Strompreis_NeuerPreisGrid.postUpdate(NULL)
+            // Reset-Eingaben
+            Strompreis_NeuesDatum_Tag.postUpdate(NULL)
+            Strompreis_NeuesDatum_Monat.postUpdate(NULL)
+            Strompreis_NeuesDatum_Jahr.postUpdate(NULL)
+            Strompreis_NeuerPreisPV.postUpdate(NULL)
+            Strompreis_NeuerPreisGrid.postUpdate(NULL)
 
-        // Nach 1 Minute den Status zurücksetzen
-        createTimer(now.plusMinutes(1), [ | Strompreis_Status.postUpdate("Strompreis speichern") ])
+            // Nach 1 Minute den Status zurücksetzen
+            createTimer(now.plusMinutes(1), [ | Strompreis_Status.postUpdate("Strompreis speichern") ])
 
-    } catch (Exception e) {
-        logError("Strompreise", "Fehler beim Schreiben der CSV: " + e.getMessage)
-        Strompreis_Status.postUpdate("❌ Fehler beim Speichern!")
+        } catch (Exception e) {
+            logError("Strompreise", "Fehler beim Schreiben der CSV: " + e.getMessage)
+            Strompreis_Status.postUpdate("❌ Fehler beim Speichern!")
+            Strompreis_Speichern.postUpdate(OFF)
+        }
+    } else {
+        logWarn("Strompreise", "Eingabefehler – keine Zeile geschrieben.")
+        Strompreis_Status.postUpdate("⚠️  Eingabe unvollständig!")
         Strompreis_Speichern.postUpdate(OFF)
     }
-} else {
-    logWarn("Strompreise", "Eingabefehler – keine Zeile geschrieben.")
-    Strompreis_Status.postUpdate("⚠️  Eingabe unvollständig!")
-    Strompreis_Speichern.postUpdate(OFF)
-}
+end
