@@ -1,7 +1,6 @@
 rule "CSV Dateien per E-Mail versenden"
 when
-    Time cron "0 20 0 * * ?" or // Jeden Tag um 00:20 Uhr
-    Time cron "0 10 07 * * ?" 
+    Time cron "0 20 0 * * ?" // Jeden Tag um 00:20 Uhr
 then
     val mailActions = getActions("mail", "mail:smtp:webde")
 
