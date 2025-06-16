@@ -1,0 +1,37 @@
+rule "CSV Dateien per E-Mail versenden"
+when
+    Time cron "0 20 0 * * ?" or // Jeden Tag um 00:20 Uhr
+    Time cron "0 10 07 * * ?" 
+then
+    val mailActions = getActions("mail", "mail:smtp:webde")
+
+    val csvDir = new java.io.File("/openhab/conf/csv/")
+    if (!csvDir.exists || !csvDir.isDirectory) {
+        logError("MailCSV", "CSV-Verzeichnis nicht gefunden: " + csvDir.getAbsolutePath)
+        return
+    }
+
+    val fileList = csvDir.listFiles.filter[f | f.getName.endsWith(".csv")].sortBy[f | f.getName]
+    if (fileList.isEmpty) {
+        logInfo("MailCSV", "Keine CSV-Dateien zum Versenden gefunden.")
+        return
+    }
+
+    var subjectText = "Tagesverbräuche Zählerschrank S3" + now.toLocalDate.toString
+    var bodyText = "CSV Dateien vom " + now.toLocalDate.toString + ":\n\n"
+
+    for (file : fileList) {
+        val sizeKB = file.length / 1024
+        val lastMod = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date(file.lastModified))
+        bodyText += String::format("%s (%d KB, geändert: %s)\n", file.getName, sizeKB, lastMod)
+    }
+
+    val attachmentPaths = fileList.map[f | f.toURI.toString].toArray
+
+    try {
+        mailActions.sendMailWithAttachments("mail@torstenberger.de", subjectText, bodyText, attachmentPaths)
+        logInfo("MailCSV", "CSV-Dateien erfolgreich per E-Mail versendet.")
+    } catch (Exception e) {
+        logError("MailCSV", "Fehler beim Senden der E-Mail: " + e.getMessage)
+    }
+end
