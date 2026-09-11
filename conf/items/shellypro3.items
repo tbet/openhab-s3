@@ -1,8 +1,14 @@
 // Shelly Pro3 ECE334F89590 (192.168.179.31) - 3-fach Schaltaktor
 // Gruppe fasst alle 3 Phasen zusammen, damit sie gemeinsam ein-/ausgeschaltet werden koennen.
 // OR(ON,OFF) -> Gruppenstatus ist ON, sobald mindestens eine Phase eingeschaltet ist.
-Group:Switch:OR(ON,OFF) ShellyPro3_Alle "Shelly Pro3 - Alle Phasen" <switch>
+Group:Switch:OR(ON,OFF) ShellyPro3_Alle "Elektische Heizung Warmwasser" <switch>
 
 Switch ShellyPro3_L1 "Shelly Pro3 Phase 1" <switch> (ShellyPro3_Alle) { channel="mqtt:topic:shelly_pro3:phase1_state, mqtt:topic:shelly_pro3:phase1_cmd" }
 Switch ShellyPro3_L2 "Shelly Pro3 Phase 2" <switch> (ShellyPro3_Alle) { channel="mqtt:topic:shelly_pro3:phase2_state, mqtt:topic:shelly_pro3:phase2_cmd" }
 Switch ShellyPro3_L3 "Shelly Pro3 Phase 3" <switch> (ShellyPro3_Alle) { channel="mqtt:topic:shelly_pro3:phase3_state, mqtt:topic:shelly_pro3:phase3_cmd" }
+
+// Grenzwerte fuer die Batterie-Automatik (siehe shellypro3_heizung_automatik.rules).
+// Initialwerte (20% / 30%) werden beim ersten Start per Regel gesetzt, danach
+// per restoreOnStartup (rrd4j.persist) ueber Neustarts hinweg gemerkt.
+Number ShellyPro3_AusschaltProzent "Ausschalt-Prozent [%.0f %%]" <battery>
+Number ShellyPro3_EinschaltProzent "Einschalt-Prozent [%.0f %%]" <battery>
