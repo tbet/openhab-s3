@@ -1,0 +1,59 @@
+// Initialwerte fuer die Ein-/Ausschalt-Grenzen setzen, falls noch nicht gesetzt
+// (z.B. beim allerersten Start, bevor rrd4j den Wert restaurieren konnte).
+rule "Heizung Warmwasser Prozent-Grenzwerte initialisieren"
+when
+    System started
+then
+    if (ShellyPro3_AusschaltProzent.state == NULL || ShellyPro3_AusschaltProzent.state == UNDEF) {
+        ShellyPro3_AusschaltProzent.postUpdate(20)
+        logInfo("HeizungWW", "Ausschalt-Prozent initialisiert: 20%")
+    }
+    if (ShellyPro3_EinschaltProzent.state == NULL || ShellyPro3_EinschaltProzent.state == UNDEF) {
+        ShellyPro3_EinschaltProzent.postUpdate(30)
+        logInfo("HeizungWW", "Einschalt-Prozent initialisiert: 30%")
+    }
+end
+
+// Schaltet die elektrische Heizung Warmwasser (ShellyPro3_Alle) anhand des
+// Batterie-Ladezustands (GoodWe_Battery_Percent_Final). Hysterese ueber zwei
+// Grenzwerte, damit der Schalter nicht staendig hin- und herflattert:
+// - faellt der Batteriestand auf/unter ShellyPro3_AusschaltProzent -> aus
+// - steigt der Batteriestand auf/ueber ShellyPro3_EinschaltProzent -> ein
+// - dazwischen bleibt der aktuelle Schaltzustand unveraendert
+rule "Heizung Warmwasser Batterie-Automatik"
+when
+    Item GoodWe_Battery_Percent_Final changed or
+    Item ShellyPro3_AusschaltProzent changed or
+    Item ShellyPro3_EinschaltProzent changed
+then
+    if (GoodWe_Battery_Percent_Final.state == NULL || GoodWe_Battery_Percent_Final.state == UNDEF ||
+        ShellyPro3_AusschaltProzent.state == NULL || ShellyPro3_AusschaltProzent.state == UNDEF ||
+        ShellyPro3_EinschaltProzent.state == NULL || ShellyPro3_EinschaltProzent.state == UNDEF) {
+        return
+    }
+
+    // WORKAROUND: GoodWe_Battery_Percent_Final liefert aktuell einen Bruch
+    // (0.63) statt eines Prozentwerts (63) - bestaetigt per Debug-Log am
+    // 2026-09-11 (state=0.63, Typ=QuantityType). Ursache ist vermutlich ein
+    // Altlast-Bug in percent_final.rules (raw / 100), der bewusst NICHT
+    // angefasst wird, um bestehende Logik nicht zu veraendern. Deshalb hier
+    // lokal mit *100 kompensiert, ausschliesslich fuer diese Automatik.
+    val batteryPercent = (GoodWe_Battery_Percent_Final.state as Number).floatValue * 100
+    val ausschaltProzent = (ShellyPro3_AusschaltProzent.state as Number).floatValue
+    val einschaltProzent = (ShellyPro3_EinschaltProzent.state as Number).floatValue
+
+    logInfo("HeizungWW", "Batterie: {}%, Ausschalt: {}%, Einschalt: {}%", batteryPercent, ausschaltProzent, einschaltProzent)
+
+    if (batteryPercent <= ausschaltProzent) {
+        if (ShellyPro3_Alle.state != OFF) {
+            logInfo("HeizungWW", "Batterie <= Ausschalt-Grenze, schalte Heizung aus")
+            ShellyPro3_Alle.sendCommand(OFF)
+        }
+    } else if (batteryPercent >= einschaltProzent) {
+        if (ShellyPro3_Alle.state != ON) {
+            logInfo("HeizungWW", "Batterie >= Einschalt-Grenze, schalte Heizung ein")
+            ShellyPro3_Alle.sendCommand(ON)
+        }
+    }
+    // zwischen den beiden Grenzwerten: Zustand bewusst unveraendert lassen (Hysterese)
+end
