@@ -971,6 +971,38 @@
                 }
               ]
             }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-toggle-card",
+                              "config": {
+                                "icon": "oh:switch",
+                                "item": "ShellyPro3_Alle",
+                                "title": "Elektische Heizung Warmwasser"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
           }
         ],
         "grid": [],

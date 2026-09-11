@@ -1,0 +1,8 @@
+// Shelly Pro3 ECE334F89590 (192.168.179.31) - 3-fach Schaltaktor
+// Gruppe fasst alle 3 Phasen zusammen, damit sie gemeinsam ein-/ausgeschaltet werden koennen.
+// OR(ON,OFF) -> Gruppenstatus ist ON, sobald mindestens eine Phase eingeschaltet ist.
+Group:Switch:OR(ON,OFF) ShellyPro3_Alle "Shelly Pro3 - Alle Phasen" <switch>
+
+Switch ShellyPro3_L1 "Shelly Pro3 Phase 1" <switch> (ShellyPro3_Alle) { channel="mqtt:topic:shelly_pro3:phase1_state, mqtt:topic:shelly_pro3:phase1_cmd" }
+Switch ShellyPro3_L2 "Shelly Pro3 Phase 2" <switch> (ShellyPro3_Alle) { channel="mqtt:topic:shelly_pro3:phase2_state, mqtt:topic:shelly_pro3:phase2_cmd" }
+Switch ShellyPro3_L3 "Shelly Pro3 Phase 3" <switch> (ShellyPro3_Alle) { channel="mqtt:topic:shelly_pro3:phase3_state, mqtt:topic:shelly_pro3:phase3_cmd" }

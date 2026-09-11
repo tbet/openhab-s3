@@ -1,0 +1,49 @@
+// Shelly Pro3 "Shelly Pro3 ECE334F89590" (IP 192.168.179.31)
+// 3-fach Schaltaktor, je Kanal ein "switch:<i>"-Component
+// MQTT Geraete-ID: shellypro3-ece334f89590
+// Nutzt die bereits in shelly3em.things definierte Bridge mqtt:broker:mosquitto
+//
+// Pro Phase zwei getrennte Kanaele statt einem gemeinsamen switch-Kanal:
+// - "_state" liest den Zustand vom Status-Topic (JSON-Feld "output", true/false)
+// - "_cmd" sendet Befehle an den Command-Topic (erwartet direkt "on"/"off")
+// Grund: transformationPatternOut fuer Befehle hatte sich in der Praxis als
+// unzuverlaessig erwiesen (bekanntes Problem im Zusammenspiel mit on/off-Werten
+// in der MQTT-Binding). Mit getrennten Kanälen braucht der Befehlskanal gar
+// keine Transformation mehr, da "on"/"off" schon exakt dem Shelly-Format entspricht.
+// Beide Kanaele werden im .items-File auf dasselbe Item verlinkt.
+Thing mqtt:topic:shelly_pro3 "Shelly Pro3 ECE334F89590" (mqtt:broker:mosquitto) {
+  Channels:
+    Type switch : phase1_state "Phase 1 (L1) Status" [
+      stateTopic="shellypro3-ece334f89590/status/switch:0",
+      transformationPattern="JSONPATH:$.output",
+      on="true",
+      off="false"
+    ]
+    Type switch : phase1_cmd "Phase 1 (L1) Schalten" [
+      commandTopic="shellypro3-ece334f89590/command/switch:0",
+      on="on",
+      off="off"
+    ]
+    Type switch : phase2_state "Phase 2 (L2) Status" [
+      stateTopic="shellypro3-ece334f89590/status/switch:1",
+      transformationPattern="JSONPATH:$.output",
+      on="true",
+      off="false"
+    ]
+    Type switch : phase2_cmd "Phase 2 (L2) Schalten" [
+      commandTopic="shellypro3-ece334f89590/command/switch:1",
+      on="on",
+      off="off"
+    ]
+    Type switch : phase3_state "Phase 3 (L3) Status" [
+      stateTopic="shellypro3-ece334f89590/status/switch:2",
+      transformationPattern="JSONPATH:$.output",
+      on="true",
+      off="false"
+    ]
+    Type switch : phase3_cmd "Phase 3 (L3) Schalten" [
+      commandTopic="shellypro3-ece334f89590/command/switch:2",
+      on="on",
+      off="off"
+    ]
+}
